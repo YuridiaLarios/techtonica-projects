@@ -4,16 +4,15 @@ body {
 }
 
 .content-wrapper {
-  width: 1230px;
+  width: 1600px;
   margin: 0 auto;
   background-color: blue;
   overflow: hidden;
 }
 
 .left {
-  margin-top: 20px;
   background: rgba(192, 181, 181, 0.9);
-  width: 600px;
+  width: 800px;
   float: left;
 }
 
@@ -24,9 +23,9 @@ body {
 
 .right {
   background-color: black;
-  width: 600px;
+  width: 800px;
   float: left;
-  margin-left: 30px;
+  margin-left: 0px;
 }
 
 .instructions {
@@ -36,7 +35,7 @@ body {
 
 .video {
   background-color: green;
-  width: 1230px;
+  width: 1600px;
   text-align: center;
   float: down;
 }
