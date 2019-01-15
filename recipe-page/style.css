@@ -1,3 +1,12 @@
 body {
-  background-color: red;
+  background: linear-gradient(white, 1%, #ff0400, #ff1600, #af2351, black 99%);
+}
+
+p {
+  color: white;
+}
+
+.left {
+  width: 600px;
+  float: left;
 }
