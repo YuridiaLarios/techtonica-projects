@@ -7,6 +7,14 @@ p {
 }
 
 .left {
+  background-color: gray;
   width: 600px;
   float: left;
+}
+
+.right {
+  background-color: cyan;
+  width: 600px;
+  float: left;
+  margin-left: 30px;
 }
