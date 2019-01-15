@@ -1,44 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Merienda|Raleway');
+
+
 body {
+  font-family: "Merienda";
   background: linear-gradient(#ff0400, #ff1600, #cf0300 99%);
   background: url("geo-pizza.jpg") repeat right top;
-
-  color: white;
   font-size: 18px;
+}
+
+.top h1 {
+  font-size: 60px;
+}
+
+li {
+  margin-top: 10px;
 }
 
 .content-wrapper {
   width: 1600px;
   margin: 0 auto;
-  background-color: blue;
+  background-color: white;
   overflow: hidden;
+  padding: 100px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
 }
 
 .left {
-  background: rgba(192, 181, 181, 0.9);
+  /* background: rgba(192, 181, 181, 0.9); */
   width: 800px;
   float: left;
+  margin-top: 60px;
 }
 
 .ingredients {
-  width: 500px;
+  width: 700px;
   padding: 30px;
 }
 
 .right {
-  background-color: black;
-  width: 800px;
+  /* background-color: black; */
+  width: 780px;
   float: left;
-  margin-left: 0px;
+  margin-left: 20px;
 }
 
 .instructions {
   text-align: justify;
-  width: 600px;
+  width: 730px;
   padding: 30px;
 }
 
 .video {
-  background-color: green;
+  /* background-color: green; */
   width: 1600px;
   text-align: center;
   float: down;
