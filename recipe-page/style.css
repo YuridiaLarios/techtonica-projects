@@ -51,6 +51,10 @@ li {
   padding: 30px;
 }
 
+img {
+  width: 800px;
+}
+
 .video {
   /* background-color: green; */
   width: 1600px;
@@ -60,4 +64,54 @@ li {
 
 .large-screen {
   margin-top: 30px;
+}
+
+
+
+@media (max-width: 1440px) {
+
+  .top h1 {
+    font-size: 50px;
+  }
+
+  .content-wrapper {
+    width: 1200px;
+    padding: 30px;
+  }
+
+  .left {
+    width: 500px;
+    float: left;
+    margin-top: 60px;
+  }
+
+  .ingredients {
+    width: 500px;
+    padding: 0px;
+  }
+
+  .right {
+    /* background-color: black; */
+    width: 490px;
+    margin-left: 0px;
+  }
+
+  .instructions {
+    text-align: justify;
+    width: 670px;
+    padding: 20px;
+  }
+
+  .video {
+    /* background-color: green; */
+    width: 1200px;
+  }
+
+  .large-screen {
+    margin-top: 30px;
+  }
+
+  img {
+    width: 480px;
+  }
 }
