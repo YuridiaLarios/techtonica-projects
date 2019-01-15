@@ -1,20 +1,46 @@
 body {
-  background: linear-gradient(white, 1%, #ff0400, #ff1600, #af2351, black 99%);
-}
-
-p {
+  background: linear-gradient(#ff0400, #ff1600, #cf0300 99%);
   color: white;
 }
 
+.content-wrapper {
+  width: 1230px;
+  margin: 0 auto;
+  background-color: blue;
+  overflow: hidden;
+}
+
 .left {
-  background-color: gray;
+  margin-top: 20px;
+  background: rgba(192, 181, 181, 0.9);
   width: 600px;
   float: left;
 }
 
+.ingredients {
+  width: 500px;
+  padding: 30px;
+}
+
 .right {
-  background-color: cyan;
+  background-color: black;
   width: 600px;
   float: left;
   margin-left: 30px;
+}
+
+.instructions {
+  width: 500px;
+  padding: 30px;
+}
+
+.video {
+  background-color: green;
+  width: 1230px;
+  text-align: center;
+  float: down;
+}
+
+.large-screen {
+  margin-top: 30px;
 }
