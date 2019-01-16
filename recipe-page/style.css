@@ -8,7 +8,7 @@ body {
   font-size: 18px;
 }
 
-.top h1 {
+h1 {
   font-size: 60px;
 }
 
@@ -31,6 +31,8 @@ li {
   width: 800px;
   float: left;
   margin-top: 60px;
+  z-index: 2;
+
 }
 
 .ingredients {
@@ -43,6 +45,7 @@ li {
   width: 780px;
   float: left;
   margin-left: 20px;
+  z-index: 1;
 }
 
 .instructions {
@@ -51,21 +54,28 @@ li {
   padding: 30px;
 }
 
+
 img {
   width: 800px;
 }
 
 .video {
   /* background-color: green; */
-  width: 1600px;
   text-align: center;
-  float: down;
+  margin: 0 auto;
+  z-index: 3;
+  clear: both;
+}
+
+iframe {
+  width: 1080px;
+  height: 720px;
+
 }
 
 .large-screen {
   margin-top: 30px;
 }
-
 
 
 @media (max-width: 1800px) {
@@ -102,10 +112,12 @@ img {
     padding: 20px;
   }
 
-  .video {
-    /* background-color: green; */
-    width: 1200px;
+  iframe {
+    width: 720px;
+    height: 480px;
+
   }
+
 
   .large-screen {
     margin-top: 30px;
@@ -115,3 +127,41 @@ img {
     width: 480px;
   }
 }
+
+
+
+@media (max-width: 1330px) {
+
+  .top {
+    text-align: center;
+  }
+
+  .left {
+    width: 600px;
+    float: none;
+    margin: 0 auto;
+    display: block;
+    margin-top: 60px;
+  }
+
+  .right {
+    float: none;
+  }
+
+  .content-wrapper {
+    width: 777px;
+  }
+
+  .video {
+    float: none;
+    margin: 0 auto;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+
+
+@media (max-width: 870px) {}
