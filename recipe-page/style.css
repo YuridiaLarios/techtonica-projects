@@ -197,8 +197,9 @@ iframe {
   }
 
   .ingredients {
-    width: 300px;
-    padding: 5px;
+    width: 280px;
+    padding: 10px;
+
   }
 
   .right {
