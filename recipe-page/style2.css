@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Merienda|Raleway');
+
+body {
+  font-family: "Merienda";
+  background: linear-gradient(#ff0400, #ff1600, #cf0300 99%);
+  background: url("geo-pizza.jpg") repeat right top;
+}
