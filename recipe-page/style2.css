@@ -5,3 +5,20 @@ body {
   background: linear-gradient(#ff0400, #ff1600, #cf0300 99%);
   background: url("geo-pizza.jpg") repeat right top;
 }
+
+@media (min-width: 1230px) {
+  .wrapper-container {
+    width: 60%;
+    margin: 100px auto;
+    background-color: white;
+  }
+}
+
+@media (max-width: 767px) {
+  .p-5 {
+    padding: 30px !important;
+  }
+
+
+
+}
