@@ -6,11 +6,20 @@ body {
   background: url("geo-pizza.jpg") repeat right top;
 }
 
-@media (min-width: 1230px) {
+.container {
+  width: 100%;
+}
+
+@media (min-width: 830px) {
   .wrapper-container {
-    width: 60%;
+    width: 70%;
     margin: 100px auto;
     background-color: white;
+  }
+
+  .video-container {
+    margin: 0 auto;
+    width: 80%;
   }
 }
 
