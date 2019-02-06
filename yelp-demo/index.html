@@ -1,1 +1,145 @@
-<h1>Yelp Demo</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>Yelp Demo</title>
+
+  <meta name="description" content="yelp-demo, practicing oop, Yuridia Larios">
+  <meta name="author" content="Yuridia Larios">
+  <meta name="keywords" content="Yuridia Larios, OOP, Work">
+
+  <link href="https://fonts.googleapis.com/css?family=Changa+One|Open+Sans:400,400i,700,700i,800" rel="stylesheet">
+
+  <!--Bootstrap stylesheet-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!--Fontawesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <!--navbar-->
+  <nav class="navbar navbar-expand-sm fixed-top navbar-dark" style="background-color: #de5d4b;">
+    <a class="navbar-brand" href="index.html">FoodNow 🍕 </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbarToggle" aria-controls="myNavbarToggle"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="myNavbarToggle">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item mobile-noDisplay">
+          <a class="nav-link" href="https://www.linkedin.com/in/yuridia-larios-aispuro" target="_blank"><i class="fa fa-linkedin fa-2x"
+              aria-hidden="true"></i></span></a>
+        </li>
+        <li class="nav-item mobile-noDisplay">
+          <a class="nav-link" href="https://github.com/YuridiaLarios" target="_blank"><i class="fa fa-github fa-2x"
+              aria-hidden="true"></i></a>
+        </li>
+        <li class="nav-item mobile-noDisplay">
+          <a class="nav-link" href="https://twitter.com/Yuridia_Larios" target="blank"><i class="fa fa-twitter fa-2x"
+              aria-hidden="true"></i></a>
+        </li>
+      </ul>
+
+      <div class="right-menu">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#home-menu">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#work-menu">Work</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about-menu">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+
+
+
+
+  <!-- WEBSITE WRAPPER CONTAINER-->
+  <div class="container-fluid ">
+
+    <!-- COLUMNS SECTION -->
+    <div id="work-menu" class="container-fluid p-1 mb-1 portfolio-section" style="background-color: white">
+
+      <div class="row">
+        <div class="col-md-4 bg-secondary">.col-md-4</div>
+        <div class="col-md-8 bg-light">.col-md-8</div>
+      </div>
+
+
+      <!-- Footer -->
+      <footer class="page-footer font-small pt-4">
+        <div class="footer-copyright text-center py-3">
+
+          <a href="https://www.linkedin.com/in/yuridia-larios-aispuro " target="_blank"><img src="images/linkedin-icon.png"
+              alt="linkedin logo" class="social-icon"></a>
+          <a href="https://twitter.com/Yuridia_Larios " target="_blank"><img src="images/twitter-icon2.png" alt="twitter logo"
+              class="social-icon"></a>
+          <a href="https://github.com/YuridiaLarios " target="_blank"><img src="images/github.png" alt="github logo"
+              class="social-icon"></a>
+          <a href="https://www.facebook.com/yuridia.larios " target="_blank"><img src="images/fb-icon.png" alt="facebook logo"
+              class="social-icon"></a>
+          <p>&copy; 2017 Yuridia Larios</p>
+          <a href="#home-menu">
+            <p>^ Back to Top ^</p>
+          </a>
+        </div>
+      </footer>
+      <!-- Footer -->
+    </div>
+  </div>
+  </div> <!-- END OF WEBSITE WRAPPER -->
+
+
+
+
+  <!--Bootstrap jQuery-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <!--Bootstrap Popper-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <!--Bootstrap JS-->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script>
+    $('a[href^="#"]').on('click', function (event) {
+
+      var target = $(this.getAttribute('href'));
+
+      if (target.length) {
+        event.preventDefault();
+        $('html, body').stop().animate({
+          scrollTop: target.offset().top
+        }, 1000);
+      }
+
+    });
+  </script>
+
+</body>
+
+
+
+</html>
