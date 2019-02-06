@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Eczar:400,600');
+@import url('https://fonts.googleapis.com/css?family=Merienda|Raleway');
 
 /*****************************************************************************
 Screen (min-width: 640px) 
@@ -9,7 +10,7 @@ HEADING: NAVBAR
 ***********************************/
 
 .navbar-brand {
-  font-family: "Open Sans", "Arial";
+  font-family: "Merienda", "Raleway";
   font-size: 30px;
   letter-spacing: 1px;
   color: whitesmoke;
@@ -19,151 +20,35 @@ HEADING: NAVBAR
   text-align: center;
 }
 
-/**********************************
-HEADING: BANNER
-***********************************/
-
-.banner {
-  height: 650px;
-  font-family: sans-serif;
-  color: #f0eef0;
-}
-
-.banner-yuri-photo {
-  width: 250px;
-  margin-top: 125px;
-  border-radius: 50%;
-  border: 10px solid white;
-}
-
-.banner ul {
-  margin-bottom: -5px !important;
-}
-
-.banner-jobTitle {
-  font-size: 18px;
-}
-
-.fly-in-text li {
-  display: inline-block;
-  margin-right: 20px;
-  font-family: "Open Sans", "Arial";
-  font-size: 7em;
-  color: #f0eef0;
-  opacity: 1;
-  margin-top: 100px;
-}
 
 /**********************************
- BODY: SECTION: portfolio
+ BODY and HTML
  ***********************************/
-
-.portfolio-section {
-  margin-top: 150px;
+body,
+html {
+  height: 100vh;
 }
 
-.infocard {
-  width: 100%;
-  height: calc(400/16*8px);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+.food-column {
+  height: 100vh;
+}
+
+h4 {
+  color: white;
+}
+
+
+/**********************************
+ Users div
+ ***********************************/
+.currentUsers {
+  width: 99%;
   background-color: white;
+  margin: 0 auto;
 }
 
-.thumbnail {
-  border-radius: 2px;
-  margin-bottom: 20%;
-  padding: 0px;
-  height: 350px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  cursor: pointer;
-}
-
-.thumbnail h3 {
-  font-family: 'Eczar', serif;
-  font-size: 20px;
-}
-
-.thumbnail:hover {
-  opacity: 0.8;
-  transform: scale(1.01);
-}
-
-.portfolio-section a {
-  text-decoration: none;
-  color: #383838;
-}
-
-.caption {
-  padding: 2%;
-}
-
-.technologies-footer {
-  color: rgb(107, 105, 105);
-  font-size: 16px;
-}
-
-/**********************************
-BODY: SECTION: ABOUT
-***********************************/
-
-.about-contact {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-}
-
-.about-section {
-  width: 100%;
-}
-
-.about-skills {
-  height: 20%;
+.avatar {
   width: 80%;
-  text-align: center;
-  padding: 5%;
-  border-radius: 2%;
-  float: left;
-}
-
-.about-skills-icons {
-  width: 14%;
-  height: 14%;
-}
-
-/**********************************
-BODY: SECTION: CONTACT
-***********************************/
-
-.contact-info-container li {
-  list-style: none;
-  margin: 10% 3%;
-}
-
-.contact-info-container li a {
-  color: #696969;
-  text-decoration: none;
-  font-size: 19px;
-  letter-spacing: 0.1px;
-}
-
-.contact-info-container li:hover {
-  transform: scale(1.01);
-  cursor: pointer;
-}
-
-.fa {
-  margin-right: 5%;
-}
-
-.social-icon {
-  width: 35px;
-  height: 35px;
-  margin: 0px 5px;
-  color: gray;
-}
-
-.social-icon:hover {
-  opacity: 0.7;
 }
 
 /*****************************************************************************
@@ -213,7 +98,7 @@ BODY: SECTION: CONTACT
   ***********************************/
 
   .portfolio-section {
-    margin-top: 40px;
+    margin-top: 10px;
   }
 
   .display-4 {

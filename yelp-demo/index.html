@@ -14,6 +14,7 @@
 
   <link href="https://fonts.googleapis.com/css?family=Changa+One|Open+Sans:400,400i,700,700i,800" rel="stylesheet">
 
+
   <!--Bootstrap stylesheet-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
     crossorigin="anonymous">
@@ -26,7 +27,7 @@
 
 <body>
   <!--navbar-->
-  <nav class="navbar navbar-expand-sm fixed-top navbar-dark" style="background-color: #de5d4b;">
+  <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #de5d4b;">
     <a class="navbar-brand" href="index.html">FoodNow 🍕 </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbarToggle" aria-controls="myNavbarToggle"
@@ -37,29 +38,23 @@
     <div class="collapse navbar-collapse" id="myNavbarToggle">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item mobile-noDisplay">
-          <a class="nav-link" href="https://www.linkedin.com/in/yuridia-larios-aispuro" target="_blank"><i class="fa fa-linkedin fa-2x"
-              aria-hidden="true"></i></span></a>
         </li>
         <li class="nav-item mobile-noDisplay">
-          <a class="nav-link" href="https://github.com/YuridiaLarios" target="_blank"><i class="fa fa-github fa-2x"
-              aria-hidden="true"></i></a>
         </li>
         <li class="nav-item mobile-noDisplay">
-          <a class="nav-link" href="https://twitter.com/Yuridia_Larios" target="blank"><i class="fa fa-twitter fa-2x"
-              aria-hidden="true"></i></a>
         </li>
       </ul>
 
       <div class="right-menu">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#home-menu">Home</a>
+            <!-- <a class="nav-link" href="#home-menu">Home</a> -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#work-menu">Work</a>
+            <!-- <a class="nav-link" href="#work-menu">Work</a> -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#about-menu">About</a>
+            <!-- <a class="nav-link" href="#about-menu">About</a> -->
           </li>
         </ul>
       </div>
@@ -77,11 +72,37 @@
   <div class="container-fluid ">
 
     <!-- COLUMNS SECTION -->
-    <div id="work-menu" class="container-fluid p-1 mb-1 portfolio-section" style="background-color: white">
+    <div id="wrapper-container" class="container-fluid p-0 mb-1" style="background-color: white">
 
       <div class="row">
-        <div class="col-md-4 bg-secondary">.col-md-4</div>
-        <div class="col-md-8 bg-light">.col-md-8</div>
+        <!-- users and buttons section -->
+        <div class="col-md-4 bg-secondary food-column">
+
+          <form id="fullName">
+            <h4 class="mt-4">Add User</h4>
+            <div class="form-row align-items-center">
+              <div class="col-auto">
+                <label class="sr-only" for="inlineFormInput">First Name</label>
+                <label class="sr-only" for="inlineFormInput2">Last Name</label>
+                <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="First Name">
+                <input type="text" class="form-control mb-2" id="inlineFormInput2" placeholder="Last Name">
+
+              </div>
+              <div class="col-auto">
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+              </div>
+            </div>
+          </form>
+          <div id="usersDiv" class="container currentUsers">
+            <!-- COLUMNS TO BE ADDED -->
+          </div>
+
+        </div>
+
+        <div class="col-md-8 bg-light food-column">.col-md-8
+        </div>
       </div>
 
 
@@ -138,6 +159,7 @@
     });
   </script>
 
+  <script src="script.js"></script>
 </body>
 
 
