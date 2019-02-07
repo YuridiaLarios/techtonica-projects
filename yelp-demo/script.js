@@ -309,8 +309,22 @@ $(document).ready(function () {
   showRestaurants();
 
 
+  // When the "add-restaurant" form is submited, the name input is readed 
+  // and added to the our database system and UI
+  $("#addRestaurantButton").on("click", function () {
+    let restaurantName = $("#inputRestaurantName").val();
+    if (restaurantName !== "") {
+      let newRestaurant = new Restaurant(restaurantName, food.restaurants.length);
+      food.restaurants.push(newRestaurant);
+      $("#restaurantDiv").empty();
+      showRestaurants();
+    }
+  });
+
+
+
   // When the "add-user" form is submited, the first name and last name are readed 
-  // and added to the our database system
+  // and added to the our database system and UI
   $("#addUserButton").on("click", function () {
     let userFirstName = $("#firstNameInput").val();
     let userLastName = $("#lastNameInput").val();
