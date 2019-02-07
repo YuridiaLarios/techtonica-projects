@@ -118,8 +118,18 @@
 
         </div>
 
-        <div id="restaurantDiv" class="col-md-8 bg-light food-column">
-          <!-- RESTAURANT ROWS AND INFO TO BE ADDED -->
+        <div class="col-md-8 bg-light food-column">
+          <div class="container mt-4 text-right">
+            <button type="button" class="btn btn-outline-primary">Filter by Average</button>
+            <button type="button" class="btn btn-outline-secondary">American Food</button>
+            <button type="button" class="btn btn-outline-info">Chinese Food</button>
+            <button type="button" class="btn btn-outline-success">Italian Food</button>
+            <button type="button" class="btn btn-outline-success">Mexican Food</button>
+            <button type="button" class="btn btn-outline-dark">Fast Food</button>
+          </div>
+          <div id="restaurantDiv">
+            <!-- RESTAURANT ROWS AND INFO TO BE ADDED -->
+          </div>
         </div>
       </div>
 
@@ -160,22 +170,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
     crossorigin="anonymous"></script>
 
+  <!--jQuery-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <script>
-    $('a[href^="#"]').on('click', function (event) {
-
-      var target = $(this.getAttribute('href'));
-
-      if (target.length) {
-        event.preventDefault();
-        $('html, body').stop().animate({
-          scrollTop: target.offset().top
-        }, 1000);
-      }
-
-    });
-  </script>
 
   <script src="script.js"></script>
 </body>

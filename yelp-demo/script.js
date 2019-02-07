@@ -192,6 +192,9 @@ food.restaurants.push(evergreen);
 let burgerKing = new Restaurant("Burger King", food.restaurants.length);
 food.restaurants.push(burgerKing);
 
+let cpk = new Restaurant("California Pizza Kitchen", food.restaurants.length);
+food.restaurants.push(cpk);
+
 //Printing all restaurants info from array
 console.log(food.restaurants);
 console.log(); // new line
@@ -232,12 +235,16 @@ console.log(); // new line
 // Add users rating to restaurants
 ingrid.addRating(evergreen.id, 4);
 ingrid.addRating(burgerKing.id, 2);
+ingrid.addRating(cpk.id, 3.5);
+
 console.log("ingrid's ratings: ");
 console.log(ingrid.ratings);
 
 
 yuridia.addRating(evergreen.id, 1);
 yuridia.addRating(burgerKing.id, 3);
+yuridia.addRating(cpk.id, 3.5);
+
 console.log("yuridia's ratings: ");
 console.log(yuridia.ratings);
 //**************************************************** */
@@ -250,9 +257,24 @@ console.log(yuridia.ratings);
 evergreen.usersRatings = (ingrid.ratings["0"]);
 evergreen.usersRatings = (yuridia.ratings["0"]);
 
+burgerKing.usersRatings = (ingrid.ratings["1"]);
+burgerKing.usersRatings = (yuridia.ratings["1"]);
+
+cpk.usersRatings = (ingrid.ratings["2"]);
+cpk.usersRatings = (yuridia.ratings["2"]);
+
+// console.log(evergreen.averageRating());
 console.log(evergreen._usersRatings);
 console.log(evergreen.numOfRatings);
-// console.log(evergreen.averageRating());
+
+// console.log(burgerKing.averageRating());
+console.log(burgerKing._usersRatings);
+console.log(burgerKing.numOfRatings);
+
+// console.log(cpk.averageRating());
+console.log(cpk._usersRatings);
+console.log(cpk.numOfRatings);
+
 //**************************************************** */
 
 
