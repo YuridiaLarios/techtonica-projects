@@ -116,13 +116,27 @@ class RestaurantRecommender {
     return this.restaurants;
   }
 
+
+
   deleteUser(userFirstName, userLastName) {
     // finding what index it is, if not index = -1;
-    let filterIndex = this.users.findIndex(e => ((e.firstName === userFirstName) && (e.lastName === userLastName)));
+    let filterIndex = this.users.findIndex(e => ((e.firstName === userFirstName) &&
+      (e.lastName === userLastName)));
     console.log("momomomomomomomoo");
     console.log(filterIndex);
     if (filterIndex > -1) {
       this.users.splice(filterIndex, 1);
+    }
+  }
+
+
+  deleteRestaurant(restaurantName) {
+    // finding what index it is, if not index = -1;
+    let filterIndex = this.restaurants.findIndex(e => ((e.name === restaurantName)));
+    console.log("momomomomomomomoo");
+    console.log(filterIndex);
+    if (filterIndex > -1) {
+      this.restaurants.splice(filterIndex, 1);
     }
   }
 
@@ -286,7 +300,7 @@ function showRestaurants() {
   html += '<div class="container p-3" <div class="row">';
   for (let i = 0; i < food.restaurantInfo.length; i++) {
     html += '<div class="restaurantX m-4 p-2 col-lg-12 col-md-12 col-sm-12 col-12-row">';
-    html += '<h3 class="firstName">' + food.restaurantInfo[i].name + '</h3><p class="average">' + 'Rate Average: ' + food.restaurantInfo[i].rateAverageInfo + '<p class="numOfRates">' + 'Reviews: ' + food.restaurantInfo[i].numOfRatingsInfo + '</p></div>';
+    html += '<h3 class="restaurantName">' + food.restaurantInfo[i].name + '</h3><p class="average">' + 'Rate Average: ' + food.restaurantInfo[i].rateAverageInfo + '<p class="numOfRates">' + 'Reviews: ' + food.restaurantInfo[i].numOfRatingsInfo + '</p></div>';
   }
   html += '</div>'; // end of container
 
@@ -318,7 +332,9 @@ $(document).ready(function () {
       food.restaurants.push(newRestaurant);
       $("#restaurantDiv").empty();
       showRestaurants();
+      console.log("momomomommomomomfafafafaf");
     }
+    return false;
   });
 
 
@@ -350,6 +366,24 @@ $(document).ready(function () {
     }
   });
 
+  // When the delete restaurant button is clicked, get the name of all the selected restaurant's divs and use them to delete restaurant from both database and UI.
+  $("#deleteRestaurantButton").on("click", function () {
+    $('.restaurantX.border-warning').each(function (i, obj) {
+      let restaurantName = $(obj).children(".restaurantName").text();
+      // let restaurantNameModified = restaurantName.toLowerCase().replace(/\s/g, '');
+      console.log(obj);
+      console.log(restaurantName);
+      // console.log(restaurantNameModified)
+      food.deleteRestaurant(restaurantName);
+    });
+
+    // removes all divs with userX class and yellow border class
+    $('.restaurantX.border-warning').remove();
+    $('#deleteRestaurantButton').addClass('disabled');
+
+    return false;
+  });
+
 
 
 
@@ -365,6 +399,7 @@ $(document).ready(function () {
       $("#usersDiv").empty();
       showUsers();
     }
+    return false;
   });
 
   // When selecting or deselecting an user div, apply corresponding highlighting 
@@ -413,6 +448,10 @@ $(document).ready(function () {
     // removes all divs with userX class and yellow border class
     $('.userX.border-warning').remove();
     $('#deleteUserButton').addClass('disabled');
+
+    return false;
   });
+
+
 
 });

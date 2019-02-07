@@ -42,7 +42,7 @@ h4 {
  Users div
  ***********************************/
 .currentUsers {
-  width: 90%;
+  width: 99.9%;
   background-color: white;
   margin: 0 auto;
   text-align: center;
@@ -68,6 +68,7 @@ h4 {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.10), 0 3px 3px rgba(0, 0, 0, 0.12);
   font-size: 20px;
   background-color: white;
+  cursor: pointer;
 }
 
 
