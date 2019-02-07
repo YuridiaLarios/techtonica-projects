@@ -322,6 +322,37 @@ $(document).ready(function () {
   });
 
 
+  // If at least one restaurant div is selected, activate the delete restaurant button
+  function activateRestaurantDeleteButton() {
+    var self = $('#deleteRestaurantButton');
+    if ($('.restaurantX.border-warning').length >= 1) {
+      if (self.hasClass('disabled')) {
+        self.removeClass('disabled');
+      }
+    } else {
+      self.addClass('disabled');
+    }
+  }
+
+
+  // When selecting or deselecting a restaurant div, apply corresponding highlighting class, and call activateUserDeleteButton() function to check for activating or deactivating the delete restaurant button.
+  $('#restaurantDiv').on('click', '.restaurantX', function () {
+    var self = $(this);
+
+    if (self.hasClass('border-warning')) {
+      self.removeClass("border-warning");
+      self.removeClass("border");
+      activateRestaurantDeleteButton();
+    } else {
+      self.addClass("border-warning");
+      self.addClass("border");
+      activateRestaurantDeleteButton();
+    }
+  });
+
+
+
+
 
   // When the "add-user" form is submited, the first name and last name are readed 
   // and added to the our database system and UI
@@ -337,24 +368,24 @@ $(document).ready(function () {
   });
 
   // When selecting or deselecting an user div, apply corresponding highlighting 
-  // class, and call activateDeleteButton() function to check for activating or deactivating the delete user button.
+  // class, and call activateUserDeleteButton() function to check for activating or deactivating the delete user button.
   $('#usersDiv').on('click', '.userX', function () {
     var self = $(this);
 
     if (self.hasClass('border-warning')) {
       self.removeClass("border-warning");
       self.removeClass("border");
-      activateDeleteButton();
+      activateUserDeleteButton();
     } else {
       self.addClass("border-warning");
       self.addClass("border");
-      activateDeleteButton();
+      activateUserDeleteButton();
     }
   });
 
 
   // If at least one user div is selected, activate the delete user button
-  function activateDeleteButton() {
+  function activateUserDeleteButton() {
     var self = $('#deleteUserButton');
     if ($('.userX.border-warning').length >= 1) {
       if (self.hasClass('disabled')) {
@@ -364,6 +395,8 @@ $(document).ready(function () {
       self.addClass('disabled');
     }
   }
+
+
 
 
   // When the delete user button is clicked, get the first and last name of all the selected user's divs and use them to delete user from both database and UI.
