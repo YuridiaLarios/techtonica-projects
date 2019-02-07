@@ -78,12 +78,27 @@
         <!-- users and buttons section -->
         <div class="col-md-4 bg-secondary food-column">
 
+          <form id="restaurantManager">
+            <h4 class="mt-4">Add Restaurant</h4>
+            <div class="form-row align-items-center">
+              <div class="col-auto">
+                <label class="sr-only" for="inlineFormInputRest1">Name:</label>
+                <input id="inlineFormInputRest1" type="text" class="form-control mb-2" placeholder="Name">
+              </div>
+              <div class="col-auto">
+                <button type="submit" id="addRestaurantButton" class="btn btn-primary mb-2">Submit</button>
+                <button type="delete" id="deleteRestaurantButton" class="btn btn-danger disabled mb-2">Delete
+                  Restaurant</button>
+              </div>
+            </div>
+          </form>
+
           <form id="fullName">
             <h4 class="mt-4">Add User</h4>
             <div class="form-row align-items-center">
               <div class="col-auto">
-                <label class="sr-only" for="inlineFormInput">First Name</label>
-                <input id="firstNameInput" type="text" class="form-control mb-2" id="inlineFormInput" placeholder="First Name">
+                <label class="sr-only" for="firstNameInput">First Name</label>
+                <input id="firstNameInput" type="text" class="form-control mb-2" placeholder="First Name">
               </div>
               <div class="col-auto">
                 <label class="sr-only" for="inlineFormInput2">Last Name</label>
@@ -101,7 +116,8 @@
 
         </div>
 
-        <div class="col-md-8 bg-light food-column">.col-md-8
+        <div id="restaurantDiv" class="col-md-8 bg-light food-column">
+          <!-- RESTAURANT ROWS AND INFO TO BE ADDED -->
         </div>
       </div>
 

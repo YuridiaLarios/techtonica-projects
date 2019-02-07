@@ -32,25 +32,36 @@ class Restaurant {
     this.id = id;
     this._usersRatings = [5];
     this.numOfRatings = 1;
-    this.averageRating = function () {
-      let sum = 0;
-      for (let i = 0; i < this._usersRatings.length; i++) {
-        sum += this._usersRatings[i];
-      }
-      return sum / this._usersRatings.length;
-    }
+    this.averageRating = 5;
+  }
 
+  updateAverage() {
+    let sum = 0;
+    for (let i = 0; i < this._usersRatings.length; i++) {
+      sum += this._usersRatings[i];
+    }
+    this.averageRating = (sum / this._usersRatings.length).toFixed(2);
+    // console.log(this.averageRating);
   }
 
   addCategory(name) {
     this.categories.add(name); //add is a built in set method
   }
-  updateRating(rating) {
-    this.averageRating = (this.averageRating + rating) / this.numOfRatings;
+
+  get rateAverageInfo() {
+    return this.averageRating;
   }
+
+  get numOfRatingsInfo() {
+    return this.numOfRatings;
+  }
+
   set usersRatings(rating) {
-    this._usersRatings.push(rating);
-    this.numOfRatings += 1;
+    if (typeof rating == "number") {
+      this._usersRatings.push(rating);
+      this.numOfRatings += 1;
+      this.updateAverage();
+    }
   }
 }
 //**************************************************** */
@@ -101,6 +112,10 @@ class RestaurantRecommender {
     return this.users;
   }
 
+  get restaurantInfo() {
+    return this.restaurants;
+  }
+
   deleteUser(userFirstName, userLastName) {
     // finding what index it is, if not index = -1;
     let filterIndex = this.users.findIndex(e => ((e.firstName === userFirstName) && (e.lastName === userLastName)));
@@ -127,12 +142,6 @@ let food = new RestaurantRecommender();
 
 //**************************************************** */
 // Adding users 
-
-// pushUser(userFirstName, userLastName){
-
-// }
-
-
 
 let ingrid = new User("Ingrid", "Cookiemonster", food.users.length, "images/ingridAvatar.png");
 food.users.push(ingrid);
@@ -229,7 +238,7 @@ evergreen.usersRatings = (yuridia.ratings["0"]);
 
 console.log(evergreen._usersRatings);
 console.log(evergreen.numOfRatings);
-console.log(evergreen.averageRating());
+// console.log(evergreen.averageRating());
 //**************************************************** */
 
 
@@ -246,10 +255,9 @@ vietnamese.categoryRestaurants;
 
 
 /************************************************************************************
-  function to generate all the divs and attach all info to
-  their corresponding div to be displayed.
+function showUsers()  
+function to generate users divs and attach their first name, last name, and avatar to their corresponding div to be displayed.
 ***********************************************************************************/
-
 function showUsers() {
   var html = '';
   html += '<div class="container p-3"><div class="row">';
@@ -266,10 +274,43 @@ function showUsers() {
 }
 
 
+
+
+
+/************************************************************************************
+function showRestaurants()  
+function to generate users divs and attach their first name, last name, and avatar to their corresponding div to be displayed.
+***********************************************************************************/
+function showRestaurants() {
+  var html = '';
+  html += '<div class="container p-3" <div class="row">';
+  for (let i = 0; i < food.restaurantInfo.length; i++) {
+    html += '<div class="restaurantX m-4 p-2 col-lg-12 col-md-12 col-sm-12 col-12-row">';
+    html += '<h3 class="firstName">' + food.restaurantInfo[i].name + '</h3><p class="average">' + 'Rate Average: ' + food.restaurantInfo[i].rateAverageInfo + '<p class="numOfRates">' + 'Reviews: ' + food.restaurantInfo[i].numOfRatingsInfo + '</p></div>';
+  }
+  html += '</div>'; // end of container
+
+  // apend info to our users div
+  $("#restaurantDiv").append(html);
+}
+
+
+
+
+
+
+
+/************************************************************************************
+MAIN PROGRAM
+***********************************************************************************/
 // main program
 $(document).ready(function () {
   showUsers();
+  showRestaurants();
 
+
+  // When the "add-user" form is submited, the first name and last name are readed 
+  // and added to the our database system
   $("#addUserButton").on("click", function () {
     let userFirstName = $("#firstNameInput").val();
     let userLastName = $("#lastNameInput").val();
@@ -281,7 +322,8 @@ $(document).ready(function () {
     }
   });
 
-  // add and remove .active
+  // When selecting or deselecting an user div, apply corresponding highlighting 
+  // class, and call activateDeleteButton() function to check for activating or deactivating the delete user button.
   $('#usersDiv').on('click', '.userX', function () {
     var self = $(this);
 
@@ -297,18 +339,20 @@ $(document).ready(function () {
   });
 
 
+  // If at least one user div is selected, activate the delete user button
   function activateDeleteButton() {
     var self = $('#deleteUserButton');
     if ($('.userX.border-warning').length >= 1) {
       if (self.hasClass('disabled')) {
         self.removeClass('disabled');
-
       }
     } else {
       self.addClass('disabled');
     }
   }
 
+
+  // When the delete user button is clicked, get the first and last name of all the selected user's divs and use them to delete user from both database and UI.
   $("#deleteUserButton").on("click", function () {
     $('.userX.border-warning').each(function (i, obj) {
       let firstName = $(obj).children(".firstName").text();
