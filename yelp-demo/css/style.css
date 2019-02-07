@@ -42,13 +42,18 @@ h4 {
  Users div
  ***********************************/
 .currentUsers {
-  width: 99%;
+  width: 90%;
   background-color: white;
   margin: 0 auto;
+  text-align: center;
 }
 
 .avatar {
   width: 80%;
+}
+
+.userX {
+  cursor: pointer;
 }
 
 /*****************************************************************************
@@ -101,71 +106,14 @@ h4 {
     margin-top: 10px;
   }
 
-  .display-4 {
-    font-size: 25px;
-  }
-
-  .infocard {
-    background-size: 100%;
-  }
-
-  .thumbnail h3 {
-    font-size: 18px;
-  }
-
-  .thumbnail:hover {
-    opacity: 1;
-    transform: none;
-  }
-
-  .technologies-footer {
-    font-size: 12px;
-  }
-
-  /**********************************
-  BODY: SECTION: ABOUT
-  ***********************************/
-
-  .about-skills {
-    height: 20%;
-    padding: 1%;
-    border-radius: 2%;
-  }
-
-  .about-skills-icons {
-    width: 14%;
-    height: 14%;
-  }
-
-  .p-5 {
-    padding: 1rem !important;
-  }
-
-  .m-5 {
-    margin: 2rem !important;
-  }
-
   /**********************************
   BODY: SECTION: CONTACT
   ***********************************/
-
-  .contact-info-container li {
-    list-style: none;
-    margin: 4% 0%;
-  }
-
-  .contact-info-container li a {
-    font-size: 12px;
-    letter-spacing: 0.1px;
-  }
-
-  .contact-info-container li:hover {
-    transform: scale(1.01);
-    cursor: pointer;
-  }
-
-  .fa {
-    margin-right: 1%;
+  .social-icon {
+    width: 35px;
+    height: 35px;
+    margin: 0px 5px;
+    color: gray;
   }
 
 }

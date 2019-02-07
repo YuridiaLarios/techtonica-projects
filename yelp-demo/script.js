@@ -100,6 +100,17 @@ class RestaurantRecommender {
   get usersInfo() {
     return this.users;
   }
+
+  deleteUser(userFirstName, userLastName) {
+    // finding what index it is, if not index = -1;
+    let filterIndex = this.users.findIndex(e => ((e.firstName === userFirstName) && (e.lastName === userLastName)));
+    console.log("momomomomomomomoo");
+    console.log(filterIndex);
+    if (filterIndex > -1) {
+      this.users.splice(filterIndex, 1);
+    }
+  }
+
 }
 //**************************************************** */
 
@@ -116,6 +127,13 @@ let food = new RestaurantRecommender();
 
 //**************************************************** */
 // Adding users 
+
+// pushUser(userFirstName, userLastName){
+
+// }
+
+
+
 let ingrid = new User("Ingrid", "Cookiemonster", food.users.length, "images/ingridAvatar.png");
 food.users.push(ingrid);
 
@@ -127,6 +145,12 @@ food.users.push(isabelle);
 
 let judytuna = new User("Judy", "Tuna", food.users.length, "images/judyAvatar.jpg");
 food.users.push(judytuna);
+
+let tony = new User("Tony", "Hero", food.users.length, "images/tonyAvatar.jpg");
+food.users.push(tony);
+
+let danielle = new User("Danielle", "Hero", food.users.length, "images/danielleAvatar.png");
+food.users.push(danielle);
 
 // Printing all users info from array
 console.log(food.users);
@@ -231,8 +255,8 @@ function showUsers() {
   html += '<div class="container p-3"><div class="row">';
 
   for (let i = 0; i < food.usersInfo.length; i++) {
-    html += '<div class="col-lg-4 col-md-6 col-sm-6 col-12-row">';
-    html += '<img class="avatar rounded-circle" src="' + food.usersInfo[i].avatar + '">' + food.usersInfo[i].firstName + " " + food.usersInfo[i].lastName + '</div>';
+    html += '<div class="userX p-2 col-lg-4 col-md-6 col-sm-6 col-12-row">';
+    html += '<img class="avatar rounded-circle" src="' + food.usersInfo[i].avatar + '">' + '<br>' + '<p class="firstName">' + food.usersInfo[i].firstName + '</p><p class="lastName">' + food.usersInfo[i].lastName + '</p></div>';
   }
 
   html += '</div>'; // end of container
@@ -241,20 +265,63 @@ function showUsers() {
   $("#usersDiv").append(html);
 }
 
-showUsers();
 
-// {
-//   /* <div class="container">
-//   <div class="row">
-//     <div class="col-sm">
-//       One of three columns
-//     </div>
-//     <div class="col-sm">
-//       One of three columns
-//     </div>
-//     <div class="col-sm">
-//       One of three columns
-//     </div>
-//   </div>
-//   </div> */
-// }
+// main program
+$(document).ready(function () {
+  showUsers();
+
+  $("#addUserButton").on("click", function () {
+    let userFirstName = $("#firstNameInput").val();
+    let userLastName = $("#lastNameInput").val();
+    if (userFirstName !== "" && userLastName !== "") {
+      let newUser = new User(userFirstName, userLastName, food.users.length, "images/ingridAvatar.png");
+      food.users.push(newUser);
+      $("#usersDiv").empty();
+      showUsers();
+    }
+  });
+
+  // add and remove .active
+  $('#usersDiv').on('click', '.userX', function () {
+    var self = $(this);
+
+    if (self.hasClass('border-warning')) {
+      self.removeClass("border-warning");
+      self.removeClass("border");
+      activateDeleteButton();
+    } else {
+      self.addClass("border-warning");
+      self.addClass("border");
+      activateDeleteButton();
+    }
+  });
+
+
+  function activateDeleteButton() {
+    var self = $('#deleteUserButton');
+    if ($('.userX.border-warning').length >= 1) {
+      if (self.hasClass('disabled')) {
+        self.removeClass('disabled');
+
+      }
+    } else {
+      self.addClass('disabled');
+    }
+  }
+
+  $("#deleteUserButton").on("click", function () {
+    $('.userX.border-warning').each(function (i, obj) {
+      let firstName = $(obj).children(".firstName").text();
+      let lastName = $(obj).children(".lastName").text();
+      console.log(obj);
+      console.log(firstName);
+      console.log(lastName);
+      food.deleteUser(firstName, lastName);
+    });
+
+    // removes all divs with userX class and yellow border class
+    $('.userX.border-warning').remove();
+    $('#deleteUserButton').addClass('disabled');
+  });
+
+});
