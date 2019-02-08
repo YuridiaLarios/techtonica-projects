@@ -111,7 +111,7 @@
               </div>
             </div>
           </form>
-          <div id="usersDiv" class="mt-4 container currentUsers">
+          <div id="usersDiv" class="mt-4 mb-4 container currentUsers">
             <!-- USERS COLUMNS AND INFO TO BE ADDED -->
 
           </div>
@@ -120,10 +120,11 @@
 
         <div class="col-md-8 bg-light food-column">
           <div class="container mt-4 text-right">
-            <button type="button" class="btn btn-outline-primary">Filter by Average</button>
+            <button type="button" id="unfilter" class="btn btn-outline-warning">All</button>
+            <button type="button" id="filterByAverage" class="btn btn-outline-primary">Filter by Average</button>
             <button type="button" class="btn btn-outline-secondary">American Food</button>
             <button type="button" class="btn btn-outline-info">Chinese Food</button>
-            <button type="button" class="btn btn-outline-success">Italian Food</button>
+            <button type="button" class="btn btn-outline-danger">Italian Food</button>
             <button type="button" class="btn btn-outline-success">Mexican Food</button>
             <button type="button" class="btn btn-outline-dark">Fast Food</button>
           </div>
@@ -147,9 +148,6 @@
           <a href="https://www.facebook.com/yuridia.larios " target="_blank"><img src="images/fb-icon.png" alt="facebook logo"
               class="social-icon"></a>
           <p>&copy; 2019 Yuridia Larios</p>
-          <a href="#home-menu">
-            <p>^ Back to Top ^</p>
-          </a>
         </div>
       </footer>
       <!-- Footer -->
@@ -175,6 +173,8 @@
 
 
   <script src="script.js"></script>
+  <script src="main.js"></script>
+
 </body>
 
 

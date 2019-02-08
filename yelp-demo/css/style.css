@@ -30,7 +30,7 @@ html {
 }
 
 .food-column {
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 h4 {
@@ -70,6 +70,48 @@ h4 {
   background-color: white;
   cursor: pointer;
 }
+
+
+
+/**********************************
+ Restaurant categories classes
+ ***********************************/
+
+.american-gray {
+  color: gray;
+  border: 2px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.chinese-category {
+  color: #17a2b8;
+  border: 2px solid #17a2b8;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.italian-category {
+  color: red;
+  border: 2px solid red;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.mexican-category {
+  color: green;
+  border: 2px solid green;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.fastfood-category {
+  color: #3b4249;
+  border: 2px solid #3b4249;
+  border-radius: 5px;
+  padding: 5px;
+}
+
 
 
 

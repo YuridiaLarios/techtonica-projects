@@ -103,7 +103,7 @@ class User {
 class RestaurantRecommender {
   constructor() {
     // All main properties should go here.
-    this.categories = {};
+    this.categories = new Set();
     this.restaurants = [];
     this.users = [];
   }
@@ -116,13 +116,20 @@ class RestaurantRecommender {
     return this.restaurants;
   }
 
+  addRestaurant(name) {
+    this.restaurants.push(new Restaurant(name));
+  }
+
+  addUser(firstName, lastName, id, avatarURL) {
+    this.users.push(new User(firstName, lastName, id, avatarURL));
+  }
+
 
 
   deleteUser(userFirstName, userLastName) {
     // finding what index it is, if not index = -1;
     let filterIndex = this.users.findIndex(e => ((e.firstName === userFirstName) &&
       (e.lastName === userLastName)));
-    console.log("momomomomomomomoo");
     console.log(filterIndex);
     if (filterIndex > -1) {
       this.users.splice(filterIndex, 1);
@@ -133,13 +140,11 @@ class RestaurantRecommender {
   deleteRestaurant(restaurantName) {
     // finding what index it is, if not index = -1;
     let filterIndex = this.restaurants.findIndex(e => ((e.name === restaurantName)));
-    console.log("momomomomomomomoo");
     console.log(filterIndex);
     if (filterIndex > -1) {
       this.restaurants.splice(filterIndex, 1);
     }
   }
-
 }
 //**************************************************** */
 
@@ -149,7 +154,8 @@ class RestaurantRecommender {
 
 
 let food = new RestaurantRecommender();
-
+// food.addRestaurant("ghostName");
+// console.log(food.restaurants);
 
 
 
@@ -185,8 +191,8 @@ console.log(); // new line
 
 //**************************************************** */
 //Adding Restaurants
-let evergreen = new Restaurant("Evergreen", food.restaurants.length);
-food.restaurants.push(evergreen);
+let mandarinHouse = new Restaurant("Mandarin House", food.restaurants.length);
+food.restaurants.push(mandarinHouse);
 
 
 let burgerKing = new Restaurant("Burger King", food.restaurants.length);
@@ -204,25 +210,39 @@ console.log(); // new line
 
 //**************************************************** */
 // creating categories of food
-let vietnamese = new Category("Vietnamese");
-let fastFood = new Category("Fast Food");
 let american = new Category("American");
+let chinese = new Category("Chinese");
+let italian = new Category("Italian");
+let mexican = new Category("Mexican");
+let fastFood = new Category("Fast Food");
+
+// add categories to set
+food.categories.add(american);
+food.categories.add(chinese);
+food.categories.add(italian);
+food.categories.add(mexican);
+food.categories.add(fastFood);
+
 
 // add categories to each restaurant name
-evergreen.addCategory("Vietnamese");
-burgerKing.addCategory(["Fast Food", "American"]);
+mandarinHouse.addCategory("Chinese");
+burgerKing.addCategory("Fast Food");
+burgerKing.addCategory("American");
+cpk.addCategory("Italian");
 
 
-console.log(evergreen.categories);
+
+console.log(mandarinHouse.categories);
 console.log(burgerKing.categories);
 
 
 // add id of restaurant to each corresponding category
-vietnamese.addRestaurant(evergreen.id);
+chinese.addRestaurant(mandarinHouse.id);
 fastFood.addRestaurant(burgerKing.id);
 american.addRestaurant(burgerKing.id);
 
-console.log("id's of vietnamese restaurants: " + vietnamese.restaurants);
+
+console.log("id's of chinese restaurants: " + chinese.restaurants);
 console.log("id's of fastFood restaurants: " + fastFood.restaurants);
 console.log("id's of American food restaurants: " + american.restaurants);
 console.log(); // new line
@@ -233,7 +253,7 @@ console.log(); // new line
 
 //**************************************************** */
 // Add users rating to restaurants
-ingrid.addRating(evergreen.id, 4);
+ingrid.addRating(mandarinHouse.id, 4);
 ingrid.addRating(burgerKing.id, 2);
 ingrid.addRating(cpk.id, 3.5);
 
@@ -241,7 +261,7 @@ console.log("ingrid's ratings: ");
 console.log(ingrid.ratings);
 
 
-yuridia.addRating(evergreen.id, 1);
+yuridia.addRating(mandarinHouse.id, 1);
 yuridia.addRating(burgerKing.id, 3);
 yuridia.addRating(cpk.id, 3.5);
 
@@ -254,8 +274,9 @@ console.log(yuridia.ratings);
 
 
 //**************************************************** */
-evergreen.usersRatings = (ingrid.ratings["0"]);
-evergreen.usersRatings = (yuridia.ratings["0"]);
+// Add ratings to restaurants
+mandarinHouse.usersRatings = (ingrid.ratings["0"]);
+mandarinHouse.usersRatings = (yuridia.ratings["0"]);
 
 burgerKing.usersRatings = (ingrid.ratings["1"]);
 burgerKing.usersRatings = (yuridia.ratings["1"]);
@@ -263,9 +284,9 @@ burgerKing.usersRatings = (yuridia.ratings["1"]);
 cpk.usersRatings = (ingrid.ratings["2"]);
 cpk.usersRatings = (yuridia.ratings["2"]);
 
-// console.log(evergreen.averageRating());
-console.log(evergreen._usersRatings);
-console.log(evergreen.numOfRatings);
+// console.log(mandarinHouse.averageRating());
+console.log(mandarinHouse._usersRatings);
+console.log(mandarinHouse.numOfRatings);
 
 // console.log(burgerKing.averageRating());
 console.log(burgerKing._usersRatings);
@@ -279,201 +300,4 @@ console.log(cpk.numOfRatings);
 
 
 
-// food.filter("vietnamese"); //this returns evergreen
-vietnamese.categoryRestaurants;
-
-
-
-
-
-//**********************************************************************************/
-// VERY SCARY USER INTERFACE
-
-
-/************************************************************************************
-function showUsers()  
-function to generate users divs and attach their first name, last name, and avatar to their corresponding div to be displayed.
-***********************************************************************************/
-function showUsers() {
-  var html = '';
-  html += '<div class="container p-3"><div class="row">';
-
-  for (let i = 0; i < food.usersInfo.length; i++) {
-    html += '<div class="userX p-2 col-lg-4 col-md-6 col-sm-6 col-12-row">';
-    html += '<img class="avatar rounded-circle" src="' + food.usersInfo[i].avatar + '">' + '<br>' + '<p class="firstName">' + food.usersInfo[i].firstName + '</p><p class="lastName">' + food.usersInfo[i].lastName + '</p></div>';
-  }
-
-  html += '</div>'; // end of container
-
-  // apend info to our users div
-  $("#usersDiv").append(html);
-}
-
-
-
-
-
-/************************************************************************************
-function showRestaurants()  
-function to generate users divs and attach their first name, last name, and avatar to their corresponding div to be displayed.
-***********************************************************************************/
-function showRestaurants() {
-  var html = '';
-  html += '<div class="container p-3" <div class="row">';
-  for (let i = 0; i < food.restaurantInfo.length; i++) {
-    html += '<div class="restaurantX m-4 p-2 col-lg-12 col-md-12 col-sm-12 col-12-row">';
-    html += '<h3 class="restaurantName">' + food.restaurantInfo[i].name + '</h3><p class="average">' + 'Rate Average: ' + food.restaurantInfo[i].rateAverageInfo + '<p class="numOfRates">' + 'Reviews: ' + food.restaurantInfo[i].numOfRatingsInfo + '</p></div>';
-  }
-  html += '</div>'; // end of container
-
-  // apend info to our users div
-  $("#restaurantDiv").append(html);
-}
-
-
-
-
-
-
-
-/************************************************************************************
-MAIN PROGRAM
-***********************************************************************************/
-// main program
-$(document).ready(function () {
-  showUsers();
-  showRestaurants();
-
-
-  // When the "add-restaurant" form is submited, the name input is readed 
-  // and added to the our database system and UI
-  $("#addRestaurantButton").on("click", function () {
-    let restaurantName = $("#inputRestaurantName").val();
-    if (restaurantName !== "") {
-      let newRestaurant = new Restaurant(restaurantName, food.restaurants.length);
-      food.restaurants.push(newRestaurant);
-      $("#restaurantDiv").empty();
-      showRestaurants();
-      console.log("momomomommomomomfafafafaf");
-    }
-    return false;
-  });
-
-
-  // If at least one restaurant div is selected, activate the delete restaurant button
-  function activateRestaurantDeleteButton() {
-    var self = $('#deleteRestaurantButton');
-    if ($('.restaurantX.border-warning').length >= 1) {
-      if (self.hasClass('disabled')) {
-        self.removeClass('disabled');
-      }
-    } else {
-      self.addClass('disabled');
-    }
-  }
-
-
-  // When selecting or deselecting a restaurant div, apply corresponding highlighting class, and call activateUserDeleteButton() function to check for activating or deactivating the delete restaurant button.
-  $('#restaurantDiv').on('click', '.restaurantX', function () {
-    var self = $(this);
-
-    if (self.hasClass('border-warning')) {
-      self.removeClass("border-warning");
-      self.removeClass("border");
-      activateRestaurantDeleteButton();
-    } else {
-      self.addClass("border-warning");
-      self.addClass("border");
-      activateRestaurantDeleteButton();
-    }
-  });
-
-  // When the delete restaurant button is clicked, get the name of all the selected restaurant's divs and use them to delete restaurant from both database and UI.
-  $("#deleteRestaurantButton").on("click", function () {
-    $('.restaurantX.border-warning').each(function (i, obj) {
-      let restaurantName = $(obj).children(".restaurantName").text();
-      // let restaurantNameModified = restaurantName.toLowerCase().replace(/\s/g, '');
-      console.log(obj);
-      console.log(restaurantName);
-      // console.log(restaurantNameModified)
-      food.deleteRestaurant(restaurantName);
-    });
-
-    // removes all divs with userX class and yellow border class
-    $('.restaurantX.border-warning').remove();
-    $('#deleteRestaurantButton').addClass('disabled');
-
-    return false;
-  });
-
-
-
-
-
-  // When the "add-user" form is submited, the first name and last name are readed 
-  // and added to the our database system and UI
-  $("#addUserButton").on("click", function () {
-    let userFirstName = $("#firstNameInput").val();
-    let userLastName = $("#lastNameInput").val();
-    if (userFirstName !== "" && userLastName !== "") {
-      let newUser = new User(userFirstName, userLastName, food.users.length, "images/ingridAvatar.png");
-      food.users.push(newUser);
-      $("#usersDiv").empty();
-      showUsers();
-    }
-    return false;
-  });
-
-  // When selecting or deselecting an user div, apply corresponding highlighting 
-  // class, and call activateUserDeleteButton() function to check for activating or deactivating the delete user button.
-  $('#usersDiv').on('click', '.userX', function () {
-    var self = $(this);
-
-    if (self.hasClass('border-warning')) {
-      self.removeClass("border-warning");
-      self.removeClass("border");
-      activateUserDeleteButton();
-    } else {
-      self.addClass("border-warning");
-      self.addClass("border");
-      activateUserDeleteButton();
-    }
-  });
-
-
-  // If at least one user div is selected, activate the delete user button
-  function activateUserDeleteButton() {
-    var self = $('#deleteUserButton');
-    if ($('.userX.border-warning').length >= 1) {
-      if (self.hasClass('disabled')) {
-        self.removeClass('disabled');
-      }
-    } else {
-      self.addClass('disabled');
-    }
-  }
-
-
-
-
-  // When the delete user button is clicked, get the first and last name of all the selected user's divs and use them to delete user from both database and UI.
-  $("#deleteUserButton").on("click", function () {
-    $('.userX.border-warning').each(function (i, obj) {
-      let firstName = $(obj).children(".firstName").text();
-      let lastName = $(obj).children(".lastName").text();
-      console.log(obj);
-      console.log(firstName);
-      console.log(lastName);
-      food.deleteUser(firstName, lastName);
-    });
-
-    // removes all divs with userX class and yellow border class
-    $('.userX.border-warning').remove();
-    $('#deleteUserButton').addClass('disabled');
-
-    return false;
-  });
-
-
-
-});
+module.exports = RestaurantRecommender;
