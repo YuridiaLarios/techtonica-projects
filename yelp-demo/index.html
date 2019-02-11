@@ -119,14 +119,15 @@
         </div>
 
         <div class="col-md-8 bg-light food-column">
-          <div class="container mt-4 text-right">
+          <div id="filtering-buttons" class="container mt-4 text-right">
             <button type="button" id="unfilter" class="btn btn-outline-warning">All</button>
             <button type="button" id="filterByAverage" class="btn btn-outline-primary">Filter by Average</button>
-            <button type="button" class="btn btn-outline-secondary">American Food</button>
-            <button type="button" class="btn btn-outline-info">Chinese Food</button>
-            <button type="button" class="btn btn-outline-danger">Italian Food</button>
-            <button type="button" class="btn btn-outline-success">Mexican Food</button>
-            <button type="button" class="btn btn-outline-dark">Fast Food</button>
+            <button type="button" id="filterByAmerican" class="btn btn-outline-secondary" value="American">American
+              Food</button>
+            <button type="button" id="filterByChinese" class="btn btn-outline-info" value="Chinese">Chinese Food</button>
+            <button type="button" id="filterByItalian" class="btn btn-outline-danger" value="Italian">Italian Food</button>
+            <button type="button" id="filterByMexican" class="btn btn-outline-success" value="Mexican">Mexican Food</button>
+            <button type="button" id="filterByFastFood" class="btn btn-outline-dark" value="Fast Food">Fast Food</button>
           </div>
           <div id="restaurantDiv">
             <!-- RESTAURANT ROWS AND INFO TO BE ADDED -->

@@ -216,6 +216,10 @@ $(document).ready(function () {
 
 
 
+
+  /*
+    Helper function to sort restaurant array based on its rate average property
+  */
   function filterRestaurantAverage(a, b) {
     if (a.averageRating > b.averageRating) {
       return -1;
@@ -225,6 +229,42 @@ $(document).ready(function () {
     }
     return 0;
   }
+
+
+
+
+  /*
+    Helper function to sort restaurant array based on its category
+  */
+  function restaurantByCategory(restaurantArray, categoryName) {
+    let categoryArray = [];
+    for (let i = 0; i < restaurantArray.length; i++) {
+      if (restaurantArray[i].categories.has(categoryName)) {
+        categoryArray.push(restaurantArray[i]);
+      }
+    }
+    return categoryArray;
+  }
+
+
+
+  /*
+    When one of the buttons on the filtering-buttons div is clicked, it reads its value property and
+    it uses it to filter the restaurants based on this value.
+  */
+  $('#filtering-buttons').on('click', '.btn', function () {
+    let self = $(this);
+    let categoryName = (self.val());
+    let sortRestByAverage = Array.from(food.restaurants);
+    let sortRestByCategory = Array.from(sortRestByAverage.sort(filterRestaurantAverage));
+    let finalRestByCategoryFilter = restaurantByCategory(sortRestByCategory, categoryName);
+    $('#restaurantDiv').empty();
+    showRestaurants(finalRestByCategoryFilter);
+    return false;
+  });
+
+
+
 
 
 
@@ -245,8 +285,8 @@ $(document).ready(function () {
 
 
   /* 
-  When the all button is clicked, unfilter restaurants and load them all.
-   */
+    When the all button is clicked, unfilter restaurants and load them all.
+  */
   $("#unfilter").on("click", function () {
     $('#restaurantDiv').empty();
     showRestaurants(food.restaurantInfo);
