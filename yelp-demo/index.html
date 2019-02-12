@@ -12,6 +12,7 @@
   <meta name="author" content="Yuridia Larios">
   <meta name="keywords" content="Yuridia Larios, OOP, Work">
 
+
   <link href="https://fonts.googleapis.com/css?family=Changa+One|Open+Sans:400,400i,700,700i,800" rel="stylesheet">
 
 
@@ -22,7 +23,8 @@
   <link rel="stylesheet" href="css/style.css">
 
   <!--Fontawesome-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
 </head>
 
 <body>
@@ -129,6 +131,7 @@
         </div>
 
         <div class="col-md-8 bg-light food-column">
+          <!-- RESTAURANT FILTERING BUTTONS SECTION -->
           <div id="filtering-buttons" class="container mt-4 text-right">
             <button type="button" id="unfilter" class="btn btn-outline-warning">All</button>
             <button type="button" id="filterByAverage" class="btn btn-outline-primary">Filter by Average</button>
@@ -138,6 +141,27 @@
             <button type="button" id="filterByItalian" class="btn btn-outline-danger" value="Italian">Italian Food</button>
             <button type="button" id="filterByMexican" class="btn btn-outline-success" value="Mexican">Mexican Food</button>
             <button type="button" id="filterByFastFood" class="btn btn-outline-dark" value="Fast Food">Fast Food</button>
+
+
+            <!-- <button class="open-button" onclick="openForm()">Open Form</button> -->
+
+            <div class="form-popup" id="myForm">
+              <form method="POST" class="form-container">
+                <h1>Rating</h1>
+
+                <label for="name"><b>Name:</b></label>
+                <select class="form-control" id="usernameSelectButton">
+                  <option value="" disabled selected>Username</option>
+                </select>
+
+                <label for="rating"><b>Rating</b></label>
+                <input type="number" placeholder="" name="rating" min="1" max="5" required>
+
+                <button type="submit" class="btn">Submit</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+              </form>
+            </div>
+
           </div>
           <div id="restaurantDiv">
             <!-- RESTAURANT ROWS AND INFO TO BE ADDED -->
@@ -191,3 +215,14 @@
 
 
 </html>
+
+
+<script>
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+</script>

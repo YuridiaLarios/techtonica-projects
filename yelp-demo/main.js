@@ -34,7 +34,7 @@ function showRestaurants(array) {
   html += '<div class="container p-3" <div class="row">';
   for (let i = 0; i < array.length; i++) {
     html += '<div class="restaurantX m-4 p-2 col-lg-12 col-md-12 col-sm-12 col-12-row">';
-    html += '<h3 class="restaurantName">' + array[i].name + '</h3><p class="average">' + 'Rate Average: ' + array[i].rateAverageInfo + '<p class="numOfRates">' + 'Reviews: ' + array[i].numOfRatingsInfo + '</p>'
+    html += '<h3 class="restaurantName">' + array[i].name + '<i class="fas fa-plus' + '" data-fa-transform="right-6" onclick="openForm()"></i></h3><p class="average">' + 'Rate Average: ' + array[i].rateAverageInfo + '<p class="numOfRates">' + 'Reviews: ' + array[i].numOfRatingsInfo + '</p>'
     if (array[i].categories.size > 1) {
       html += '<p> Categories: ';
     } else {
@@ -81,6 +81,20 @@ MAIN PROGRAM
 $(document).ready(function () {
   showUsers(food.usersInfo);
   showRestaurants(food.restaurantInfo);
+  populateRatingUserSelection();
+
+  function populateRatingUserSelection() {
+    $('#usernameSelectButton').empty();
+    $('#usernameSelectButton').append($('<option value="" disabled selected></option>').val("username").html("username"));
+    $.each(food.usersInfo, function (i, p) {
+      $('#usernameSelectButton').append($('<option></option>').val(food.usersInfo[i].firstName + " " + food.usersInfo[i].lastName).html(food.usersInfo[i].firstName + " " + food.usersInfo[i].lastName));
+    });
+    return false;
+  }
+
+
+
+
 
 
   /*  When the "add-restaurant" form is submited, the name input is readed and added to the our database system and UI */
@@ -169,6 +183,7 @@ $(document).ready(function () {
       food.users.push(newUser);
       $("#usersDiv").empty();
       showUsers(food.usersInfo);
+      populateRatingUserSelection();
     }
     return false;
   });
@@ -220,6 +235,7 @@ $(document).ready(function () {
       console.log(firstName);
       console.log(lastName);
       food.deleteUser(firstName, lastName);
+      populateRatingUserSelection();
     });
 
     // removes all divs with userX class and yellow border class

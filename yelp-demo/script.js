@@ -163,6 +163,7 @@ let food = new RestaurantRecommender();
 //**************************************************** */
 // Adding users 
 
+
 let ingrid = new User("Ingrid", "Cookiemonster", food.users.length, "images/ingridAvatar.png");
 food.users.push(ingrid);
 
@@ -201,6 +202,9 @@ food.restaurants.push(burgerKing);
 let cpk = new Restaurant("California Pizza Kitchen", food.restaurants.length);
 food.restaurants.push(cpk);
 
+let losCoyotes = new Restaurant("Los Coyotes", food.restaurants.length);
+food.restaurants.push(losCoyotes);
+
 //Printing all restaurants info from array
 console.log(food.restaurants);
 console.log(); // new line
@@ -229,6 +233,7 @@ mandarinHouse.addCategory("Chinese");
 burgerKing.addCategory("Fast Food");
 burgerKing.addCategory("American");
 cpk.addCategory("Italian");
+losCoyotes.addCategory("Mexican");
 
 
 
@@ -237,9 +242,9 @@ console.log(burgerKing.categories);
 
 
 // add id of restaurant to each corresponding category
-chinese.addRestaurant(mandarinHouse.id);
-fastFood.addRestaurant(burgerKing.id);
-american.addRestaurant(burgerKing.id);
+// chinese.addRestaurant(mandarinHouse.id);
+// fastFood.addRestaurant(burgerKing.id);
+// american.addRestaurant(burgerKing.id);
 
 
 console.log("id's of chinese restaurants: " + chinese.restaurants);
@@ -276,6 +281,7 @@ console.log(yuridia.ratings);
 //**************************************************** */
 // Add ratings to restaurants
 mandarinHouse.usersRatings = (ingrid.ratings["0"]);
+
 mandarinHouse.usersRatings = (yuridia.ratings["0"]);
 
 burgerKing.usersRatings = (ingrid.ratings["1"]);
