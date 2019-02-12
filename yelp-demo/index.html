@@ -85,12 +85,22 @@
               <div class="col-auto">
                 <label class="sr-only" for="inputRestaurantName">Name:</label>
                 <input id="inputRestaurantName" type="text" class="form-control mb-2" placeholder="Name">
+                <select class="form-control" id="categorySelectButton">
+                  <option value="" disabled selected>Category </option>
+                  <option value="American">American Food</option>
+                  <option value="Chinese">Chinese Food</option>
+                  <option value="Italian">Italian Food</option>
+                  <option value="Mexican">Mexican Food</option>
+                  <option value="Fast Food">Fast Food</option>
+                </select>
               </div>
               <div class="col-auto">
                 <button type="submit" id="addRestaurantButton" class="btn btn-primary mb-2">Submit</button>
                 <button type="delete" id="deleteRestaurantButton" class="btn btn-danger disabled mb-2">Delete
                   Restaurant</button>
               </div>
+
+
             </div>
           </form>
 

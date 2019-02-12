@@ -86,14 +86,19 @@ $(document).ready(function () {
   /*  When the "add-restaurant" form is submited, the name input is readed and added to the our database system and UI */
   $("#addRestaurantButton").on("click", function () {
     let restaurantName = $("#inputRestaurantName").val();
-    if (restaurantName !== "") {
+    let categoryName = $("#categorySelectButton").val();
+    if (restaurantName !== "" && categoryName !== null) {
       let newRestaurant = new Restaurant(restaurantName, food.restaurants.length);
+      newRestaurant.addCategory(categoryName);
       food.restaurants.push(newRestaurant);
       $("#restaurantDiv").empty();
       showRestaurants(food.restaurantInfo);
     }
     return false;
   });
+
+
+
 
 
   // If at least one restaurant div is selected, activate the delete restaurant button
@@ -107,6 +112,9 @@ $(document).ready(function () {
       self.addClass('disabled');
     }
   }
+
+
+
 
 
   /* When selecting or deselecting a restaurant div, apply corresponding highlighting class, and call activateUserDeleteButton() function to check for activating or deactivating the delete restaurant button.
@@ -124,6 +132,10 @@ $(document).ready(function () {
       activateRestaurantDeleteButton();
     }
   });
+
+
+
+
 
   /*When the delete restaurant button is clicked, get the name of all the selected restaurant 's divs and use them to delete restaurant from both database and UI.
    */
@@ -160,6 +172,10 @@ $(document).ready(function () {
     }
     return false;
   });
+
+
+
+
 
   /* When selecting or deselecting an user div, apply corresponding highlighting 
    class, and call activateUserDeleteButton() function to check for activating or deactivating the delete user button.
