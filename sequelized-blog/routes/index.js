@@ -1,0 +1,14 @@
+/*
+HOLDS CODE THAT MAPS JS OBJECTS TO DATABASE TABLES
+*/
+
+
+var express = require('express');
+var router = express.Router();
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.redirect("/articles")
+});
+
+module.exports = router;

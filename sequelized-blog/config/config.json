@@ -1,0 +1,16 @@
+{
+  "_comment": "configurations for database connection on development, test, production",
+
+  "development": {
+    "dialect": "sqlite",
+    "storage": "development.db"
+  },
+  "test": {
+    "dialect": "sqlite",
+    "storage": "test.db"
+  },
+  "production": {
+    "dialect": "sqlite",
+    "storage": "production.db"
+  }
+}
