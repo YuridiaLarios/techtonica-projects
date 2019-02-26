@@ -15,4 +15,4 @@ const dbConnect = () => {
 }
 
 // Uncomment below line once you have PostgreSQL setup
-// dbConnect();
+dbConnect();
