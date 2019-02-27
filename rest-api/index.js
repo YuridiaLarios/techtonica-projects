@@ -6,7 +6,7 @@ app.get('/events', (req, res) => {
 });
 
 app.get('/events/:id', (req, res) => {
-  res.send("hello world and nodemon from /events/:id");
+  res.send("hello world and nodemon from /events/:" + req.params.id);
 });
 
 const PORT = 3000;
