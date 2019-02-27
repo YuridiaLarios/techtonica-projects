@@ -35,18 +35,60 @@ app.startQuestion = (closeConnectionCallback) => {
 }
 
 app.completeSentence = (continueCallback) => {
-  //YOUR WORK HERE
-  console.log('Please write code for this function');
-  //End of your work
-  continueCallback();
+
+  var questions = [{
+      type: 'input',
+      name: 'color',
+      message: 'Your favorite color? ',
+      default: 'example: blue'
+    },
+    {
+      type: 'input',
+      name: 'item',
+      message: 'name an iteme or something you really want to buy: ',
+      default: 'example: diamond'
+    }
+  ]
+
+  inquirer.prompt(questions).then(answers => {
+    console.log('\nAnswers:');
+    console.log('My favorite color is ' + answers.color + ', so my dream is to buy a ' + answers.color + ' ' + answers.item + "!");
+    console.log('\n');
+    console.log('*********************************************************************');
+    //console.log(JSON.stringify(answers, null, ' -- '));
+
+
+    continueCallback();
+  });
 }
 
 app.createNewUser = (continueCallback) => {
-  //YOUR WORK HERE
+  var questions = [{
+      type: 'input',
+      name: 'userName',
+      message: 'your name? ',
+      default: 'example: Jhon'
+    },
+    {
+      type: 'input',
+      name: 'age',
+      message: 'your age? ',
+      default: 'example: 25'
+    }
+  ]
 
-  console.log('Please write code for this function');
-  //End of your work
-  continueCallback();
+  inquirer.prompt(questions).then(answers => {
+    console.log('\nAnswers:');
+    console.log('My name is ' + answers.userName + "!");
+    console.log('My age is ' + answers.age);
+    console.log('\n');
+    console.log('*********************************************************************');
+    //console.log(JSON.stringify(answers, null, ' -- '));
+
+
+
+    continueCallback();
+  });
 
 }
 
@@ -55,7 +97,7 @@ app.searchEventful = (continueCallback) => {
 
   console.log('Please write code for this function');
   //End of your work
-  continueCallback();
+  //continueCallback();
 }
 
 app.matchUserWithEvent = (continueCallback) => {
@@ -63,7 +105,7 @@ app.matchUserWithEvent = (continueCallback) => {
 
   console.log('Please write code for this function');
   //End of your work
-  continueCallback();
+  //continueCallback();
 }
 
 app.seeEventsOfOneUser = (continueCallback) => {
@@ -71,7 +113,7 @@ app.seeEventsOfOneUser = (continueCallback) => {
 
   console.log('Please write code for this function');
   //End of your work
-  continueCallback();
+  //continueCallback();
 }
 
 app.seeUsersOfOneEvent = (continueCallback) => {
@@ -79,7 +121,7 @@ app.seeUsersOfOneEvent = (continueCallback) => {
 
   console.log('Please write code for this function');
   //End of your work
-  continueCallback();
+  //continueCallback();
 }
 
 module.exports = app;
