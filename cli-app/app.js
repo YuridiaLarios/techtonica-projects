@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
-//connection available to all
 const connection = require('./connection');
+const eventfulKey = require("./keys.js").eventful;
+const eventful = require('eventful-node');
+const client = new eventful.Client(eventfulKey);
 
 const app = {};
 
@@ -63,6 +65,12 @@ app.completeSentence = (continueCallback) => {
 }
 
 app.createNewUser = (continueCallback) => {
+
+  function validateAge(age) {
+    var reg = /^\d+$/;
+    return reg.test(age) || "Age should be a number!";
+  }
+
   var questions = [{
       type: 'input',
       name: 'userName',
@@ -73,31 +81,69 @@ app.createNewUser = (continueCallback) => {
       type: 'input',
       name: 'age',
       message: 'your age? ',
-      default: 'example: 25'
-    }
-  ]
+      default: 'example: 25',
+      validate: validateAge
+    },
+  ];
 
   inquirer.prompt(questions).then(answers => {
-    console.log('\nAnswers:');
-    console.log('My name is ' + answers.userName + "!");
-    console.log('My age is ' + answers.age);
-    console.log('\n');
     console.log('*********************************************************************');
-    //console.log(JSON.stringify(answers, null, ' -- '));
+    const query = {
+      text: 'INSERT INTO users2(name, age) VALUES($1, $2)',
+      values: [answers.userName, answers.age],
+    }
 
-
-
-    continueCallback();
+    // callback
+    connection.query(query, (err, res) => {
+      if (err) {
+        console.log(err.stack);
+        console.log('\n*********************************************************************');
+        continueCallback();
+      } else {
+        console.log('name = ' + answers.userName);
+        console.log('age = ' + answers.age);
+        console.log("\nINSERT SUCCESSFUL\n");
+        console.log('*********************************************************************');
+        continueCallback();
+      }
+    })
   });
-
 }
 
 app.searchEventful = (continueCallback) => {
-  //YOUR WORK HERE
+  var questions = [{
+    type: 'input',
+    name: 'keyword',
+    message: 'Enter keyword to search event: ',
+    default: 'example: dancing'
+  }]
 
-  console.log('Please write code for this function');
-  //End of your work
-  //continueCallback();
+  inquirer.prompt(questions[0]).then(answers => {
+
+    client.searchEvents({
+      keywords: answers.keyword,
+      location: 'San Francisco',
+      date: "Next Week"
+    }, function (err, data) {
+      if (err) {
+        return console.error(err);
+      }
+      let resultEvents = data.search.events.event;
+      console.log('Received ' + data.search.total_items + ' events');
+      console.log('Event listing: ');
+
+      let i = 0;
+      console.log("===========================================================")
+      console.log('title: ', resultEvents[i].title);
+      console.log('start_time: ', resultEvents[i].start_time);
+      console.log('venue_name: ', resultEvents[i].venue_name);
+      console.log('venue_address: ', resultEvents[i].venue_address);
+
+      console.log('\n*********************************************************************');
+      continueCallback();
+
+    });
+  });
 }
 
 app.matchUserWithEvent = (continueCallback) => {
