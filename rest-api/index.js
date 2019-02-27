@@ -26,25 +26,25 @@ let events = [{
     name: "Github 101"
   }
 ]
+
+client.connect();
+
 app.get('/events', async (req, res) => {
-  await client.connect();
   var events = await client.query("SELECT * FROM events");
   res.json(events.rows);
-  await client.end();
 });
 
 
-app.get('/events/:id', (req, res) => {
-  // res.send("hello world and nodemon from /events/:" + req.params.id);
-  var found = events.find(function (element) {
-    return req.params.id == element.id;
-  });
-  if (found) {
-    res.json(found);
-  } else {
-    res.status(404).send('ID NOT FOUND: 404 STATUS');
-  }
+app.get('/events/:id', async (req, res) => {
+  // let event = await client.query("SELECT * FROM events WHERE id=$1", [req.param.id]);
+  // res.json(event.rows[0]);
+  var events = await client.query("SELECT * FROM events  WHERE id=$1", [req.params.id]);
+  res.json(events.rows[0]);
 });
+
+
+
+
 
 app.post('/events', (req, res) => {
   const newEvent = {
