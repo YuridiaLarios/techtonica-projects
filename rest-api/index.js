@@ -54,13 +54,12 @@ app.post('/events', async (req, res) => {
   client.release();
 });
 
-app.put('/events/:id', (req, res) => {
-  var oldEvent = events.find(function (element) {
-    return req.params.id == element.id;
-  });
-  oldEvent.name = req.body.name;
-  res.json(oldEvent);
 
+app.put('/events/:id', async (req, res) => {
+  const client = await pool.connect();
+  var events = await client.query("UPDATE events SET name=$1  WHERE id=$2 RETURNING *", [req.body.name, req.params.id]);
+  res.json(events.rows[0]);
+  client.release();
 });
 
 
