@@ -60,21 +60,8 @@ app.put('/events/:id', (req, res) => {
   });
   oldEvent.name = req.body.name;
   res.json(oldEvent);
-  /*
-  {
-   "name": "camaron"
-  }
-  */
-});
 
-// app.delete('/events/:id', (req, res) => {
-//   let oldEvent = events.find(function (element) {
-//     return req.params.id == element.id;
-//   });
-//   let location = data.indexOf(oldEvent);
-//   data.splice(location, 1);
-//   res.json(data);
-// })
+});
 
 
 app.delete('/events/:id', (req, res) => {
