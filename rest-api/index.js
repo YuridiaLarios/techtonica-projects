@@ -2,9 +2,9 @@ const express = require('express');
 const app = express();
 app.use(express.json()); // get ability to use body for post, put, delete;
 const {
-  Client
+  Pool
 } = require('pg')
-const client = new Client({
+const pool = new Pool({
   host: 'localhost',
   database: 'eventonica',
   port: 5000
@@ -27,23 +27,22 @@ let events = [{
   }
 ]
 
-client.connect();
+pool.connect();
 
 app.get('/events', async (req, res) => {
+  const client = await pool.connect();
   var events = await client.query("SELECT * FROM events");
   res.json(events.rows);
+  client.release();
 });
 
 
 app.get('/events/:id', async (req, res) => {
-  // let event = await client.query("SELECT * FROM events WHERE id=$1", [req.param.id]);
-  // res.json(event.rows[0]);
+  const client = await pool.connect();
   var events = await client.query("SELECT * FROM events  WHERE id=$1", [req.params.id]);
   res.json(events.rows[0]);
+  client.release();
 });
-
-
-
 
 
 app.post('/events', (req, res) => {
