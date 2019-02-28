@@ -63,12 +63,11 @@ app.put('/events/:id', async (req, res) => {
 });
 
 
-app.delete('/events/:id', (req, res) => {
-  let oldEvent = events.findIndex(function (element) {
-    return preq.params.id == element.id;
-  });
-  const old = events.splice(oldEvent, 1);
-  res.json(old[0]);
+app.delete('/events/:id', async (req, res) => {
+  const client = await pool.connect();
+  var events = await client.query("DELETE FROM events WHERE id=$1 RETURNING *", [req.params.id]);
+  res.json(events.rows[0]);
+  client.release();
 });
 
 
