@@ -45,14 +45,13 @@ app.get('/events/:id', async (req, res) => {
 });
 
 
-app.post('/events', (req, res) => {
-  const newEvent = {
-    id: req.body.id,
-    name: req.body.name,
-  }
-  events.push(newEvent);
-  res.json(newEvent);
-
+app.post('/events', async (req, res) => {
+  const client = await pool.connect();
+  //let userId = req.body.id;
+  let userName = req.body.name;
+  var events = await client.query("INSERT INTO events(name) VALUES($1) RETURNING *", [userName]);
+  res.json(events.rows[0]);
+  client.release();
 });
 
 app.put('/events/:id', (req, res) => {
