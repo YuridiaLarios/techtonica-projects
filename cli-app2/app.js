@@ -122,7 +122,12 @@ app.addNewEvent = (continueCallback) => {
         },
       })
       .then(res => res.json())
-      .then(json => console.log(json));
+      .then((json) => {
+        console.log('\n****************************************************************');
+        console.table(json);
+        console.log('****************************************************************');
+        continueCallback();
+      });
   }
 
   inquirer.prompt(questions).then(answers => {
