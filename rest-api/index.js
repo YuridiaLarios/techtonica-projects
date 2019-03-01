@@ -32,6 +32,7 @@ pool.connect();
 app.get('/events', async (req, res) => {
   const client = await pool.connect();
   var events = await client.query("SELECT * FROM events");
+  //res.set('Access-Control-Allow-Origin', "*") // allow cors for any domain
   res.json(events.rows);
   client.release();
 });
