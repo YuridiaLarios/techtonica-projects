@@ -5,9 +5,7 @@ const keys = require('./keys')
 // create PostgreSQL connection
 const connection = new db.Client({
   host: "localhost",
-  port: 5432,
-  user: "eventonica",
-  password: keys.dbPassword,
+  port: 5000,
   database: "eventonica"
 });
 
