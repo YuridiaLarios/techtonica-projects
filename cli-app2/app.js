@@ -17,6 +17,13 @@ function endLine() {
   console.log('*********************************************************************');
 }
 
+
+
+
+
+/******************************************************************************
+ COMMAND LINE MAIN QUESTIONS 
+*******************************************************************************/
 app.startQuestion = (closeConnectionCallback) => {
   inquirer.prompt({
     type: 'list',
@@ -51,15 +58,16 @@ app.startQuestion = (closeConnectionCallback) => {
 
 
 
-
+/******************************************************************************
+ FUNCTION WHERE OUR CLIENT CAN RETRIEVE ALL EVENTS CURRENTLY IN DATABASE 
+ USING FETCH THRU OUR WRITTEN API
+*******************************************************************************/
 app.retrieveAllEvents = (continueCallback) => {
   function getAllEvents() {
-    let promise = fetch('http://localhost:3000/events');
+    let promise = fetch('http://localhost:3000/events'); //endpoint
 
     promise.then((res) => {
-
       return res.json();
-
     }).then((json) => {
       newLine();
       console.table(json);
@@ -75,7 +83,11 @@ app.retrieveAllEvents = (continueCallback) => {
 
 
 
+/******************************************************************************
+ FUNCTION TO RETURN ONLY ONE EVENT BASED ON ITS ID
+*******************************************************************************/
 app.retrieveEvent = (continueCallback) => {
+  // questions to be prompt at command line
   var questions = [{
     type: 'input',
     name: 'id',
@@ -83,8 +95,10 @@ app.retrieveEvent = (continueCallback) => {
     default: 'example: 2',
   }];
 
+  // helper function, after we prompted our client which ID they wanted to look for,
+  // use fetch to retrieve data from our API
   function getEvent(id) {
-    let promise = fetch('http://localhost:3000/events/' + id);
+    let promise = fetch('http://localhost:3000/events/' + id); //endpoint
     promise.then((res) => {
       return res.json();
     }).then((json) => {
@@ -95,7 +109,7 @@ app.retrieveEvent = (continueCallback) => {
     });
   }
 
-
+  // main program
   inquirer.prompt(questions).then(answers => {
     let id = answers.id;
     console.log('id = ' + id);
@@ -108,7 +122,12 @@ app.retrieveEvent = (continueCallback) => {
 
 
 
+
+/******************************************************************************
+FUNCTION TO ADD A NEW EVENT TO OUR DATABASE
+*******************************************************************************/
 app.addNewEvent = (continueCallback) => {
+  // questions to be prompt at command line
   var questions = [{
     type: 'input',
     name: 'name',
@@ -116,12 +135,14 @@ app.addNewEvent = (continueCallback) => {
     default: 'example: Twilight Movie Marathon',
   }, ];
 
+
+  // function to post the event into our database using fetch
   function postEvent(eventName) {
     const body = {
-      'name': eventName
+      'name': eventName //body
     };
 
-    fetch('http://localhost:3000/events', {
+    fetch('http://localhost:3000/events', { //endpoint
         method: 'post',
         body: JSON.stringify(body),
         headers: {
@@ -137,6 +158,7 @@ app.addNewEvent = (continueCallback) => {
       });
   }
 
+  // main program
   inquirer.prompt(questions).then(answers => {
     let eventName = answers.name;
     postEvent(eventName);
@@ -148,7 +170,12 @@ app.addNewEvent = (continueCallback) => {
 
 
 
+
+/******************************************************************************
+FUNCTION TO UPDATE NAME OF AN EVENT
+*******************************************************************************/
 app.updateEventName = (continueCallback) => {
+  // questions to be prompt at command line
   var questions = [{
     type: 'input',
     name: 'id',
@@ -161,8 +188,13 @@ app.updateEventName = (continueCallback) => {
     default: 'example: Extreme Apocalypsis',
   }];
 
-  let dataToBeDeleted;
 
+
+
+
+
+  let dataToBeDeleted;
+  // function to get the event with that given id using fetch
   function getEvent(id) {
     let promise = fetch('http://localhost:3000/events/' + id);
     promise.then((res) => {
@@ -175,6 +207,11 @@ app.updateEventName = (continueCallback) => {
     });
   }
 
+
+
+
+
+  // function to put/update the name of the event using fetch
   function updateData(id, newName) {
     const body = {
       'name': newName
@@ -192,6 +229,9 @@ app.updateEventName = (continueCallback) => {
     });
   }
 
+
+
+  // main program
   inquirer.prompt(questions).then(answers => {
     let id = answers.id;
     let newName = answers.name;
@@ -204,8 +244,14 @@ app.updateEventName = (continueCallback) => {
 
 
 
+
+
+/******************************************************************************
+FUNCTION TO DELETE AN EVENT FROM OUR DATABASE
+*******************************************************************************/
 app.deleteEvent = (continueCallback) => {
 
+  // questions to be prompt at command line
   var questions = [{
     type: 'input',
     name: 'id',
@@ -215,6 +261,11 @@ app.deleteEvent = (continueCallback) => {
 
   let dataToBeDeleted;
 
+
+
+
+
+  // function to get the event with the specified id
   function getEvent(id) {
     let promise = fetch('http://localhost:3000/events/' + id);
     promise.then((res) => {
@@ -224,6 +275,10 @@ app.deleteEvent = (continueCallback) => {
     });
   }
 
+
+
+
+  // function to delete the record from our database using fetch
   function deleteData(id) {
     fetch('http://localhost:3000/events/' + id, {
       method: 'delete'
@@ -235,6 +290,10 @@ app.deleteEvent = (continueCallback) => {
     });
   }
 
+
+
+
+  // main program
   inquirer.prompt(questions).then(answers => {
     let id = answers.id;
     console.log('id = ' + id);
@@ -247,7 +306,12 @@ app.deleteEvent = (continueCallback) => {
 
 
 
+/******************************************************************************
+FUNCTION TO SEARCH FOR AN EVENT IN EVENTFULL AND EVENTUALLY SAVING ITS NAME
+TO OUR DATABASE
+*******************************************************************************/
 app.eventonicaEvent = (continueCallback) => {
+  // questions to be prompt at command line about finding an event at eventfull
   var getKeyword = [{
     type: 'input',
     name: 'keyword',
@@ -260,11 +324,13 @@ app.eventonicaEvent = (continueCallback) => {
     default: 'example: San Francisco'
   }]
 
+
   let currentEventName;
   let currentEventAddress;
 
 
-  function encounter1() {
+  function handleEventfulData() {
+    // promt the user to save the information of the event found 
     inquirer.prompt({
         type: 'list',
         name: 'save',
@@ -274,6 +340,7 @@ app.eventonicaEvent = (continueCallback) => {
           'No'
         ]
       })
+      // if yes, display all the info of the event one more time and display a success message after insertion
       .then((answers) => {
         if (answers.save === 'Yes') {
           newLine();
@@ -283,6 +350,7 @@ app.eventonicaEvent = (continueCallback) => {
           console.log(currentVenueName);
           console.log(currentEventDate);
 
+          // query to insert name of event
           const query = {
             text: 'INSERT INTO events(name) VALUES($1)',
             values: [currentEventName],
@@ -301,6 +369,7 @@ app.eventonicaEvent = (continueCallback) => {
             }
           })
         } else {
+          // if answer is other than yes, promp initial question to find another event in eventfull
           console.log(answers.save + "\n Let's keep looking then.");
           promptForKeyword();
         }
@@ -308,6 +377,10 @@ app.eventonicaEvent = (continueCallback) => {
   }
 
 
+
+
+
+  // run questions to find a keyword about the wanted event and in which city
   function promptForKeyword() {
     inquirer.prompt(getKeyword).then(answers => {
 
@@ -335,7 +408,7 @@ app.eventonicaEvent = (continueCallback) => {
         console.log('venue_name: ', resultEvents[counter].venue_name);
         console.log('venue_address: ', resultEvents[counter].venue_address);
 
-        encounter1();
+        handleEventfulData();
 
       });
     });
