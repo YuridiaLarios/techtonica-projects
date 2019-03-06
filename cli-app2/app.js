@@ -27,6 +27,7 @@ app.startQuestion = (closeConnectionCallback) => {
       'Add new event',
       'Update info of event',
       'Delete an event',
+      'Find one event in eventonica',
       'Exit'
     ],
     name: 'action',
@@ -38,6 +39,7 @@ app.startQuestion = (closeConnectionCallback) => {
     if (res.action === 'Add new event') app.addNewEvent(continueCallback);
     if (res.action === 'Update info of event') app.updateEventName(continueCallback);
     if (res.action === 'Delete an event') app.deleteEvent(continueCallback);
+    if (res.action === 'Find one event in eventonica') app.eventonicaEvent(continueCallback);
     if (res.action === 'Exit') {
       closeConnectionCallback();
       return;
@@ -242,8 +244,112 @@ app.deleteEvent = (continueCallback) => {
 }
 
 
-// app.seeUsersOfOneEvent = (continueCallback) => {
-//   console.log('Please write code for this function');
-// }
+
+
+
+app.eventonicaEvent = (continueCallback) => {
+  var getKeyword = [{
+    type: 'input',
+    name: 'keyword',
+    message: 'Enter keyword to search event: ',
+    default: 'example: dancing'
+  }, {
+    type: 'input',
+    name: 'location',
+    message: 'Enter which city: ',
+    default: 'example: San Francisco'
+  }]
+
+  let currentEventName;
+  let currentEventAddress;
+
+
+  function encounter1() {
+    inquirer.prompt({
+        type: 'list',
+        name: 'save',
+        message: 'would like to save this to the Postgres database?',
+        choices: [
+          'Yes',
+          'No'
+        ]
+      })
+      .then((answers) => {
+        if (answers.save === 'Yes') {
+          newLine();
+          console.log('Save to database? ' + answers.save + '\n');
+          console.log(currentEventName);
+          console.log(currentEventAddress);
+          console.log(currentVenueName);
+          console.log(currentEventDate);
+
+          const query = {
+            text: 'INSERT INTO events(name) VALUES($1)',
+            values: [currentEventName],
+          }
+
+          // callback
+          connection.query(query, (err, res) => {
+            if (err) {
+              console.log(err.stack);
+              newLine();
+              continueCallback();
+            } else {
+              console.log("\nINSERT SUCCESSFUL\n");
+              endLine();
+              continueCallback();
+            }
+          })
+        } else {
+          console.log(answers.save + "\n Let's keep looking then.");
+          promptForKeyword();
+        }
+      });
+  }
+
+
+  function promptForKeyword() {
+    inquirer.prompt(getKeyword).then(answers => {
+
+      client.searchEvents({
+        keywords: answers.keyword,
+        location: answers.location,
+        date: "Next Week"
+      }, function (err, data) {
+        if (err) {
+          return console.error(err);
+        }
+        let resultEvents = data.search.events.event;
+        let counter = 0;
+
+        currentEventName = resultEvents[counter].title;
+        currentEventDate = resultEvents[counter].start_time;
+        currentEventAddress = resultEvents[counter].venue_address;
+        currentVenueName = resultEvents[counter].venue_name;
+
+        console.log("===========================================================")
+        console.log('Received ' + data.search.total_items + ' events');
+        console.log('Event listing: ');
+        console.log('title: ', resultEvents[counter].title);
+        console.log('start_time: ', resultEvents[counter].start_time);
+        console.log('venue_name: ', resultEvents[counter].venue_name);
+        console.log('venue_address: ', resultEvents[counter].venue_address);
+
+        encounter1();
+
+      });
+    });
+
+  }
+
+
+  function main() {
+    promptForKeyword();
+  }
+  main();
+}
+
+
+
 
 module.exports = app;
