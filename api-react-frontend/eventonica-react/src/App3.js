@@ -5,8 +5,10 @@
 
 
 import React, { Component } from 'react';
-//import logo from './logo.svg';
 import './App.css';
+import { Button, Form } from 'react-bootstrap';
+
+
 
 
 // component creating a class
@@ -16,17 +18,48 @@ class MyComponent extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      items: []
+      items: {}
     };
   }
 
   componentDidMount() {
+    this.setState({
+      isLoaded: true,
+      items: { "name": "*", "id": "*"}
+    });
+  }
+
+
+
+  
+
+  clickMe(param1) {
+    // fetch("http://localhost:3000/events/57")
+    // .then(res => res.json())
+    // .then(
+    //   (result) => {
+    //     console.log(result)
+    //     this.setState({
+    //       isLoaded: true,
+    //       items: result
+    //     });
+    //   },
+    //   // Note: it's important to handle errors here
+    //   // instead of a catch() block so that we don't swallow
+    //   // exceptions from actual bugs in components.
+    //   (error) => {
+    //     this.setState({
+    //       isLoaded: true,
+    //       error
+    //     });
+    //   }
+    // )
+
     const body = {
-      'name': 'react event' //body
+      'name': "React Event"//body
     };
 
     fetch('http://localhost:3000/events', { //endpoint
-        crossDomain:true,
         method: 'post',
         body: JSON.stringify(body),
         headers: {
@@ -35,24 +68,26 @@ class MyComponent extends Component {
       })
       .then(res => res.json())
       .then(
-        (result) => {
-          console.log(result)
-          this.setState({
-            isLoaded: true,
-            items: result
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
-  }
+      (result) => {
+        console.log(result)
+        this.setState({
+          isLoaded: true,
+          items: result
+        });
+      },
+      // Note: it's important to handle errors here
+      // instead of a catch() block so that we don't swallow
+      // exceptions from actual bugs in components.
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      }
+    )
+
+
+}
 
   render() {
     const { error, isLoaded, items } = this.state;
@@ -63,19 +98,31 @@ class MyComponent extends Component {
     } else {
       return (
         <div>
-          <h1>Post a new Event</h1>
+              <Form>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>Event Name: </Form.Label>
+                  <Form.Control  placeholder="ex: Cocktails Night" />
+                  <Form.Text className="text-muted">
+                    Better be an exciting one!
+                  </Form.Text>
+                </Form.Group>
+
+                <Button onClick={this.clickMe.bind(this,items)} variant="dark" size="lg">Post New Event</Button>
+              </Form>
+              
+
           <ul>
-            {items.map(item => (
-              <li key={item.id}>
-                {item.id}
+              <li key={items.id}>
+                {items.id} - 
+                {items.name} 
               </li>
-            ))}
           </ul>
         </div>
       );
     }
   }
 }
+
 
 
 

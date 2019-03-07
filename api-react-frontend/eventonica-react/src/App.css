@@ -25,14 +25,32 @@
 
 #root {
   background-color: yellow;
+  margin: 0 auto;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0
 }
 
 #oneEvent {
   background-color: green;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#postEventWrapper {
+  background-color: cyan;
+  margin: 0 auto;
+  text-align: center;
 }
 
 #postEvent {
-  background-color: cyan;
+  margin: 0 auto;
+  text-align: center;
+  width: 70%;
 }
 
 #updateEvent {

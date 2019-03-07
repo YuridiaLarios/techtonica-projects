@@ -1,3 +1,11 @@
+/****************************************************
+  UPDATE AN EVENT COMPONENT
+****************************************************/
+
+
+
+
+
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
@@ -46,7 +54,7 @@ class MyComponent extends Component {
     } else {
       return (
         <div>
-          <h1>Post a new Event</h1>
+          <h1>Update an Event</h1>
           <ul>
             {items.map(item => (
               <li key={item.id}>

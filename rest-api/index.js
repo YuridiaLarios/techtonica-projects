@@ -1,6 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 
+// Express runs its middleware in order. So make sure this app.use code runs before you set up your routes.
+//By default, the cors library will allow requests from any origin. This can open you up to security problems and abuse.
+app.use(cors());
 app.use(express.json()); // get ability to use body for post, put, delete;
 
 const {
@@ -52,8 +56,9 @@ app.get('/events/:id', async (req, res) => {
 app.post('/events', async (req, res) => {
   const client = await pool.connect();
   //let userId = req.body.id;
+  // req.set('Access-Control-Allow-Origin', "*") // allow cors for any domain
+  // res.set('Access-Control-Allow-Origin', "*") // allow cors for any domain
   let userName = req.body.name;
-  res.set('Access-Control-Allow-Origin', "*") // allow cors for any domain
   var events = await client.query("INSERT INTO events(name) VALUES($1) RETURNING *", [userName]);
 
   res.json(events.rows[0]);
