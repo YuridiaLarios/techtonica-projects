@@ -10,7 +10,7 @@ class MyComponent extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      items: []
+      items: {}
     };
   }
 
@@ -48,12 +48,10 @@ class MyComponent extends Component {
         <div>
           <h1>All Events</h1>
           <ul>
-            {items.map(item => (
-              <li key={item.id}>
-                {item.id} - 
-                {item.name} 
+              <li key={items.id}>
+                {items.id} - 
+                {items.name} 
               </li>
-            ))}
           </ul>
         </div>
       );
