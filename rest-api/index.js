@@ -53,7 +53,7 @@ app.post('/events', async (req, res) => {
   const client = await pool.connect();
   //let userId = req.body.id;
   let userName = req.body.name;
-
+  res.set('Access-Control-Allow-Origin', "*") // allow cors for any domain
   var events = await client.query("INSERT INTO events(name) VALUES($1) RETURNING *", [userName]);
 
   res.json(events.rows[0]);

@@ -1,3 +1,9 @@
+/****************************************************
+ POST NEW EVENT COMPONENT
+ ****************************************************/
+
+
+
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
@@ -15,7 +21,18 @@ class MyComponent extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/events")
+    const body = {
+      'name': 'react event' //body
+    };
+
+    fetch('http://localhost:3000/events', { //endpoint
+        crossDomain:true,
+        method: 'post',
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
       .then(res => res.json())
       .then(
         (result) => {
