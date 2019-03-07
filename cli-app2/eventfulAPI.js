@@ -35,3 +35,9 @@ module.exports = function (optionsObj) {
   // YOUR WORK HERE
   console.log("You need to create this functionality yourself")
 }
+
+
+module.exports = {
+  search,
+  saveEvent
+}

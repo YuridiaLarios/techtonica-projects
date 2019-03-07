@@ -133,7 +133,8 @@ app.addNewEvent = (continueCallback) => {
     name: 'name',
     message: 'What is the name of the event?',
     default: 'example: Twilight Movie Marathon',
-  }, ];
+  },
+ ];
 
 
   // function to post the event into our database using fetch

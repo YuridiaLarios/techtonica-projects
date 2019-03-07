@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
+
 app.use(express.json()); // get ability to use body for post, put, delete;
+
 const {
   Pool
 } = require('pg')
@@ -32,7 +34,7 @@ pool.connect();
 app.get('/events', async (req, res) => {
   const client = await pool.connect();
   var events = await client.query("SELECT * FROM events");
-  //res.set('Access-Control-Allow-Origin', "*") // allow cors for any domain
+  res.set('Access-Control-Allow-Origin', "*") // allow cors for any domain
   res.json(events.rows);
   client.release();
 });
@@ -50,15 +52,20 @@ app.post('/events', async (req, res) => {
   const client = await pool.connect();
   //let userId = req.body.id;
   let userName = req.body.name;
+
   var events = await client.query("INSERT INTO events(name) VALUES($1) RETURNING *", [userName]);
+
   res.json(events.rows[0]);
+
   client.release();
 });
 
 
 app.put('/events/:id', async (req, res) => {
   const client = await pool.connect();
+
   var events = await client.query("UPDATE events SET name=$1  WHERE id=$2 RETURNING *", [req.body.name, req.params.id]);
+
   res.json(events.rows[0]);
   client.release();
 });
