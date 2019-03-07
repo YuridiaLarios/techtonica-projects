@@ -46,7 +46,7 @@ class MyComponent extends Component {
     } else {
       return (
         <div>
-          <h1>All Events</h1>
+          <h1>Event with specific ID</h1>
           <ul>
               <li key={items.id}>
                 {items.id} - 
