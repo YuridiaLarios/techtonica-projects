@@ -1,7 +1,3 @@
-/************************************************
-EVENT WITH SPECIFIC ID COMPONENT
-************************************************/
-
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
@@ -19,7 +15,7 @@ class MyComponent extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/events")
+    fetch("http://localhost:3000/events/36")
       .then(res => res.json())
       .then(
         (result) => {
@@ -50,11 +46,12 @@ class MyComponent extends Component {
     } else {
       return (
         <div>
-          <h1>Event with Specific ID</h1>
+          <h1>All Events</h1>
           <ul>
             {items.map(item => (
               <li key={item.id}>
-                {item.id}
+                {item.id} - 
+                {item.name} 
               </li>
             ))}
           </ul>
