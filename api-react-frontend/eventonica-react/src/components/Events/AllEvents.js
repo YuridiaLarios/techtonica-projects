@@ -1,9 +1,3 @@
-
-/****************************************************
- GET ALL EVENTS COMPONENT
- ****************************************************/
-
-
 import React, { Component } from 'react';
 import NewSingle from './SingleAllEvents';
 import Error from './Error';

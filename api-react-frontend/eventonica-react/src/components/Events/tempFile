@@ -1,0 +1,73 @@
+import React, { Component } from 'react';
+import SingleSideAddEvent from './SingleSideAddEvent';
+import Error from './Error';
+
+class SideAddEvents extends Component {
+  callApi(){
+    const body = {
+      'name': "React Event and Materialize"//body
+    };
+
+    const url = `http://localhost:3000/events`;
+
+    fetch(url, { //endpoint
+        method: 'post',
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        this.setState({
+          events: data
+        })
+      })
+      .catch((error) => {
+        this.setState({
+          error: true
+        })
+      });
+  }
+
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      events: {},
+      error: false,
+    };
+  }
+
+
+  componentDidMount() {
+    
+  }
+
+  renderItems() {
+    if (!this.state.error) {
+      return (
+         <SingleSideAddEvent key={this.state.events.id} item={this.state.events} />
+      );
+    } else {
+      return <Error />
+    }
+  }
+
+  render() {
+    return (
+      <div className="row">
+        {this.renderItems()}
+        <p className="center-align">
+        <button onClick={() => this.callApi()} className="btn waves-effect waves-light" type="submit" name="action">Add New Event
+        <i className="material-icons right"></i>
+        </button>
+        </p>
+      </div>
+    );
+  }
+}
+
+export default SideAddEvents;
