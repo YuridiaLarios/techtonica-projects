@@ -18,7 +18,7 @@ const pool = new Pool({
 
 
 
-// events data
+// events data seed data
 let events = [{
     id: 455,
     name: "Techtonica"
@@ -38,7 +38,7 @@ pool.connect();
 app.get('/events', async (req, res) => {
   const client = await pool.connect();
   var events = await client.query("SELECT * FROM events");
-  res.set('Access-Control-Allow-Origin', "*") // allow cors for any domain
+  res.set('Access-Control-Allow-Origin', "*") // allow cors for any domain 
   res.json(events.rows);
   client.release();
 });
