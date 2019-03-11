@@ -36,20 +36,9 @@ class SideDeleteEvents extends Component {
   }
 
 
-  renderItems() {
-    if (!this.state.error) {
-      return (
-         <DeleteButton key={this.state.events.id} item={this.state.events} handleSubmit={this.handleSearch}/>
-      );
-    } else {
-      return <Error />
-    }
-  }
-
   render() {
     return (
       <div className="row">
-        {this.renderItems()}
           <div className="app-container">
             <SearchBar handleSubmit={this.handleSearch} />
           </div>

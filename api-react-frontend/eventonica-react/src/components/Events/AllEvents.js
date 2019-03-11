@@ -3,9 +3,11 @@ import SingleEventDiv from './SingleEventDiv';
 import Error from './Error';
 
 class AllEvents extends Component {
+
   constructor(props) {
     super(props); // props ia an object that has events in it now
     this.state = {
+      events: props.events,
       error: false
     };
   }
@@ -15,7 +17,7 @@ class AllEvents extends Component {
     if (!this.state.error) {
       // Allevents come from its parent
       return this.props.events.map((item) => (
-        <SingleEventDiv key={item.id} item={item} />
+        <SingleEventDiv deleteEvent={this.props.deleteEvent} key={item.id} item={item} />
       ));
     } else {
       return <Error />
