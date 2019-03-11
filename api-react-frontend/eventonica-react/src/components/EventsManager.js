@@ -4,7 +4,9 @@ import AllEvents from './Events/AllEvents';
 import SideEventById from './Events/SideEventById';
 import SideAddEvent from './Events/SideAddEvent';
 import SideUpdateEvents from './Events/SideUpdateEvent';
-import SideDeleteEvents from './Events/SideDeleteEvent';
+import SideDeleteEvent from './Events/SideDeleteEvent';
+import SideDeleteEvent2 from './Events/SideDeleteEvent2';
+
 
 
 
@@ -88,7 +90,8 @@ class EventsManager extends Component {
             {/* parent to child we give them props, in order to give things back, we give the child a function that they can call with whatever data they want to give back to the parent  */}
             <SideAddEvent addEvent={this.addEvent} />
             <SideUpdateEvents />
-            <SideDeleteEvents deleteEvent={this.deleteEvent}/>
+            <SideDeleteEvent deleteEvent={this.deleteEvent}/>
+            <SideDeleteEvent2 deleteEvent={this.deleteEvent}/>
           </div>
         </div>
       </div>
