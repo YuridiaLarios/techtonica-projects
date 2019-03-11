@@ -58,6 +58,18 @@ individual-event div container
   opacity: 0.8;
 }
 
+.updateButtonDiv {
+  position: absolute;
+  bottom: 10%;
+  right: 25%;
+  opacity: 0.5;
+}
+
+.updateButtonDiv:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
 
 /***************************
 side div container

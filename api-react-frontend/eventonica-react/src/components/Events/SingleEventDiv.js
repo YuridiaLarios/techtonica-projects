@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DeleteButton from './DeleteButton';
+import UpdateButton from './UpdateButton';
 import Error from './Error';
 
 class SingleEventDiv extends Component {
@@ -42,6 +43,7 @@ class SingleEventDiv extends Component {
           <p><span className="bold-pink">Name:</span> {this.props.item.name}</p> 
         </div>
         <DeleteButton key={this.props.item.id} item={this.props.item}  handleSubmit={this.handleSearch} />
+        <UpdateButton key={this.props.item.id} item={this.props.item}  handleSubmit={this.handleSearch} />
       </div>
     </div>
     );
