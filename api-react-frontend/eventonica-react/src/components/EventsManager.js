@@ -7,17 +7,39 @@ import SideUpdateEvents from './Events/SideUpdateEvent';
 import SideDeleteEvents from './Events/SideDeleteEvent';
 
 
-class App extends Component {
+
+/*************************************************
+ MAIN PARENT COMPONENT
+**************************************************/
+class EventsManager extends Component {
+  // CONSTRUCTOR
   constructor(props) {
     super(props);
     this.state = {events: []}
   }
 
+
+
   // binds this method to app instance
-  addEvent = (event) => {
-    // this.state.events.push(event); // mutating the state and react doesnt know we are changing state
+  addEvent = (newEvent) => {
+    // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
     let updatedEvents = Array.from(this.state.events);
-    updatedEvents.push(event);
+    updatedEvents.push(newEvent);
+    this.setState({ // takes an object and merges that object into the current state
+      events: updatedEvents
+    })
+  }
+
+   // binds this method to app instance
+   deleteEvent = (deletedEvent) => {
+    // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
+    let updatedEvents = Array.from(this.state.events);
+    let oldEvent = this.state.events.findIndex(function (element) {
+      return deletedEvent.id === element.id;
+    });
+    // console.log(oldEvent);
+    // updatedEvents.push(event);
+    updatedEvents.splice(oldEvent, 1);
     this.setState({ // takes an object and merges that object into the current state
       events: updatedEvents
     })
@@ -63,10 +85,10 @@ class App extends Component {
           </div>
           <div className="col s4">
             <SideEventById />
-            {/* parent to child we gae them props, in order to give things back, we give the child a function that they can call with whatever data they want to give back to the parent  */}
+            {/* parent to child we give them props, in order to give things back, we give the child a function that they can call with whatever data they want to give back to the parent  */}
             <SideAddEvent addEvent={this.addEvent} />
             <SideUpdateEvents />
-            <SideDeleteEvents />
+            <SideDeleteEvents deleteEvent={this.deleteEvent}/>
           </div>
         </div>
       </div>
@@ -74,4 +96,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default EventsManager;
