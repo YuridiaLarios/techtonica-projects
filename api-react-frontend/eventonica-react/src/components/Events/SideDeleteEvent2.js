@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import SingleSideDeleteEvent from './SingleSideDeleteEvent';
+import DeleteButton from './DeleteButton';
 import Error from './Error';
 
 class SideDeleteEvents extends Component {
+  
   handleSearch = (eventId) =>{
     const url = "http://localhost:3000/events/" + eventId;
 
@@ -37,7 +38,7 @@ class SideDeleteEvents extends Component {
   renderItems() {
     if (!this.state.error) {
       return (
-         <SingleSideDeleteEvent key={this.state.events.id} item={this.state.events} />
+         <DeleteButton key={this.state.events.id} item={this.state.events} handleSubmit={this.handleSearch}/>
       );
     } else {
       return <Error />

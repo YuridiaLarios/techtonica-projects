@@ -1,46 +1,26 @@
 import React, { Component } from 'react';
 
 
-// Create component for button
-class Button extends Component {
+class DeleteButton extends Component {
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const eventID = 128;
+    this.props.handleSubmit(eventID);
+  };
+
   render() {
     return (
-      <fieldset>
-        <button
-          type={this.props.type || 'button'}
-          value={this.props.value || null}
-        >
-          {this.props.text}
-        </button>
-      </fieldset>
+      <div>
+        <div>
+          <button className="btn-floating btn-small waves-effect waves-light red" onClick={this.handleSubmit}>
+          <i className="material-icons">delete_forever</i>
+          </button>
+        </div>
+      </div>
     );
   }
-};
-
-
-class DeleteButton extends Component {
-  render() {
-    return (
-      <form method='' action=''>
-    
-
-
-        <Input
-          hasLabel='true'
-          htmlFor='textInput'
-          label='New Event Name: '
-          required='true'
-          type='text'
-        />
-        
-        <Button
-          type='submit'
-          value='submit'
-          text='Delete'
-        />
-      </form>
-    )
-  }
 }
+  
+
 
 export default DeleteButton;

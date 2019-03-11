@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NewSingle from './SingleAllEvents';
+import SingleEventDiv from './SingleEventDiv';
 import Error from './Error';
 
 class AllEvents extends Component {
@@ -15,7 +15,7 @@ class AllEvents extends Component {
     if (!this.state.error) {
       // Allevents come from its parent
       return this.props.events.map((item) => (
-        <NewSingle key={item.id} item={item} />
+        <SingleEventDiv key={item.id} item={item} />
       ));
     } else {
       return <Error />
