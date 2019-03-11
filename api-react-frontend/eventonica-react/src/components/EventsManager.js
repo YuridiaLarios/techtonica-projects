@@ -19,8 +19,8 @@ class EventsManager extends Component {
   }
 
 
-
-  // binds this method to app instance
+  // ADDING EVENT TO UI
+  // binds this method to EventsManager instance
   addEvent = (newEvent) => {
     // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
     let updatedEvents = Array.from(this.state.events);
@@ -30,15 +30,14 @@ class EventsManager extends Component {
     })
   }
 
-   // binds this method to app instance
+   // DELETING FROM UI
+   //binds this method to EventsManager instance
    deleteEvent = (deletedEvent) => {
     // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
     let updatedEvents = Array.from(this.state.events);
     let oldEvent = this.state.events.findIndex(function (element) {
       return deletedEvent.id === element.id;
     });
-    // console.log(oldEvent);
-    // updatedEvents.push(event);
     updatedEvents.splice(oldEvent, 1);
     this.setState({ // takes an object and merges that object into the current state
       events: updatedEvents
@@ -47,7 +46,8 @@ class EventsManager extends Component {
 
 
 
-  //moving it here makes it accessible
+  //MAIN ALL EVENTS UI
+  // moving it here makes it accessible to all children components
   componentDidMount() {
     const url = `http://localhost:3000/events`;
 
