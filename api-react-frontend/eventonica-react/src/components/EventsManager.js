@@ -91,8 +91,6 @@ class EventsManager extends Component {
             <SideAddEvent addEvent={this.addEvent} />
             <SideUpdateEvents />
             <SideDeleteEvent deleteEvent={this.deleteEvent}/>
-            <SideDeleteEvent2 deleteEvent={this.deleteEvent}/>
-
           </div>
         </div>
       </div>

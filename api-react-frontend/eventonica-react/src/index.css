@@ -2,20 +2,15 @@
 @import url('https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou');
 
 
+/***************************
+GENERAL
+****************************/
+
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-}
-
-
-.cardStyle {
-  height: 150px;
-}
-
-.logo {
-  font-family: 'Monoton', cursive;
-  margin-left: 30px;
 }
 
 h1 {
@@ -24,16 +19,69 @@ h1 {
   font-size: 33px;
 }
 
+h5 {
+  text-align: center;
+}
+
+
 p {
   font-size: 15px;
 }
 
+/***************************
+navbar
+****************************/
+
+.logo {
+  font-family: 'Monoton', cursive;
+  margin-left: 30px;
+}
+
+/***************************
+individual-event div container
+****************************/
+.cardStyle {
+  min-height: 210px;
+}
+
+.deleteButtonDiv {
+  position: absolute;
+  bottom: 10%;
+  right: 5%; 
+  opacity: 0.5; 
+}
+
+.deleteButtonDiv:hover {
+  opacity: 0.8;
+}
+
+
+/***************************
+side div container
+****************************/
 .divider {
   background-color: #48a69a;
   height: 1px;
   color: #48a69a;
 }
 
+.textFieldSearchDiv {
+  margin: 0 auto;
+  width: 48%;
+}
+
+.textFieldSearch {
+  font-size: 33px;
+}
+
+input:not([type]), input[type=text]:not(.browser-default),input[type=number]:not(.browser-default) {
+  font-size: 17px;
+  text-align: center;
+}
+
+/***************************
+color classes
+****************************/
 .bold-pink {
   font-weight: bolder;
   color: #ee6e73;
@@ -53,24 +101,8 @@ p {
   font-size: 18px;
 }
 
-h5 {
-  text-align: center;
-}
-
-.textFieldSearchDiv {
-  margin: 0 auto;
-  width: 48%;
-}
-
-.textFieldSearch {
-  font-size: 33px;
-}
 
 
-input:not([type]), input[type=text]:not(.browser-default),input[type=number]:not(.browser-default) {
-  font-size: 17px;
-  text-align: center;
-}
 
 
 
@@ -134,6 +166,4 @@ button {
   border-radius: 2px;
   cursor: pointer;
   transition: background-color .15s ease-in;
-  
-
 }

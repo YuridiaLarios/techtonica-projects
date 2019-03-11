@@ -11,8 +11,8 @@ class DeleteButton extends Component {
   render() {
     return (
       <div>
-        <div>
-          <button className="btn-floating btn-small waves-effect waves-light red" onClick={this.handleSubmit}>
+        <div className="deleteButtonDiv">
+          <button className="deleteButton btn-floating btn-small waves-effect waves-light red" onClick={this.handleSubmit}>
           <i className="material-icons">delete_forever</i>
           </button>
         </div>

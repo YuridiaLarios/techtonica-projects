@@ -2,19 +2,6 @@ import React, { Component } from 'react';
 import DeleteButton from './DeleteButton';
 import Error from './Error';
 
-
-// const SingleEventDiv = ({item}) => (
-//   <div className="col s4">
-//     <div className="card cardStyle">
-//       <div className="card-content">
-//         <p><span className="bold-pink">Id#</span> {item.id}</p>
-//         <p><span className="bold-pink">Name:</span> {item.name}</p> 
-//       </div>
-//     </div>
-//   </div>
-// );
-
-
 class SingleEventDiv extends Component {
   constructor(props) {
     super(props); // props ia an object that has item.id and item.name in it now
@@ -53,8 +40,8 @@ class SingleEventDiv extends Component {
         <div className="card-content">
           <p><span className="bold-pink">Id#</span> {this.props.item.id}</p>
           <p><span className="bold-pink">Name:</span> {this.props.item.name}</p> 
-          <DeleteButton key={this.props.item.id} item={this.props.item}  handleSubmit={this.handleSearch} />
         </div>
+        <DeleteButton key={this.props.item.id} item={this.props.item}  handleSubmit={this.handleSearch} />
       </div>
     </div>
     );

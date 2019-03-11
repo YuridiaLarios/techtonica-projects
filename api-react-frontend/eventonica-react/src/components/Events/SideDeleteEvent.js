@@ -13,7 +13,9 @@ class SideDeleteEvents extends Component {
         return response.json();
       })
       .then((deletedEvent) => {
-        // deleteEvent property passed by parent component, then we call the deleteEvent function 
+        this.setState({
+          event: deletedEvent
+        })
         this.props.deleteEvent(deletedEvent)
       })
       .catch((error) => {
@@ -28,7 +30,7 @@ class SideDeleteEvents extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: {},
+      event: {},
       error: false,
     };
   }
@@ -37,7 +39,7 @@ class SideDeleteEvents extends Component {
   renderItems() {
     if (!this.state.error) {
       return (
-         <SingleSideDeleteEvent key={this.state.events.id} item={this.state.events} />
+         <SingleSideDeleteEvent key={this.state.event.id} item={this.state.event} />
       );
     } else {
       return <Error />
