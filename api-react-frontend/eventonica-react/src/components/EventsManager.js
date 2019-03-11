@@ -83,13 +83,13 @@ class EventsManager extends Component {
         <div className="row">
           <div className="col s8">
           {/* giving things to child components (think of it as parameters been passed to a function) */}
-            <AllEvents events={this.state.events} deleteEvent={this.deleteEvent}/> 
+            <AllEvents events={this.state.events} addEvent={this.addEvent} deleteEvent={this.deleteEvent}/> 
           </div>
           <div className="col s4">
             <SideEventById />
             {/* parent to child we give them props, in order to give things back, we give the child a function that they can call with whatever data they want to give back to the parent  */}
             <SideAddEvent addEvent={this.addEvent} />
-            <SideUpdateEvents />
+            <SideUpdateEvents addEvent={this.addEvent}/>
             <SideDeleteEvent deleteEvent={this.deleteEvent}/>
           </div>
         </div>

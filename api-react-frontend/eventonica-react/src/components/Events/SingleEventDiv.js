@@ -13,7 +13,7 @@ class SingleEventDiv extends Component {
   }
 
   // to handle deleting an event from database
-  handleSearch = (eventId) =>{
+  handleDeleteSearch = (eventId) =>{
     const url = "http://localhost:3000/events/" + eventId;
 
     fetch(url, { //endpoint
@@ -34,6 +34,34 @@ class SingleEventDiv extends Component {
   };
 
 
+  handleUpdateSearch = (eventId) =>{
+    const url = "http://localhost:3000/events/" + eventId;
+    const body = {
+      'name': "hardcoded new name"
+    };
+    fetch(url, { //endpoint
+        method: 'put',
+        body: JSON.stringify(body),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then((updatedEvent) => {
+        // updateEvent property passed by parent component, then we call the deleteEvent function 
+        this.props.updateEvent(updatedEvent)
+      })
+      .catch((error) => {
+        this.setState({
+          error: true
+        })
+      });
+  };
+
+
   render(){
     return (
       <div className="col s12 m6 l4">
@@ -42,8 +70,8 @@ class SingleEventDiv extends Component {
           <p><span className="bold-pink">Id#</span> {this.props.item.id}</p>
           <p><span className="bold-pink">Name:</span> {this.props.item.name}</p> 
         </div>
-        <DeleteButton key={this.props.item.id} item={this.props.item}  handleSubmit={this.handleSearch} />
-        <UpdateButton key={this.props.item.id} item={this.props.item}  handleSubmit={this.handleSearch} />
+        <DeleteButton key={this.props.item.id} item={this.props.item}  handleSubmit={this.handleDeleteSearch} />
+        <UpdateButton key={this.props.item.id} item={this.props.item}  handleSubmit={this.handleUpdateSearch} />
       </div>
     </div>
     );
