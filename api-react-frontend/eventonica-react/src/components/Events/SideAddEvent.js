@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Error from './Error';
 
 class SideAddEvents extends Component {
   handleSearch = (eventName) =>{
@@ -51,7 +50,7 @@ class SideAddEvents extends Component {
             <div className="text-input">
               <SearchBar handleSubmit={this.handleSearch} />
             </div>
-            <span><i class="medium material-icons addIcon">add_circle</i></span>
+            <span><i className="medium material-icons addIcon">add_circle</i></span>
           </div>
         </div>
       </div>
@@ -75,6 +74,7 @@ class SearchBar extends React.Component {
           <input
             name="eventName"
             className="form-control textFieldSearch"
+            required={true}
             type="text"
             placeholder="Type Name press ENTER"
           />

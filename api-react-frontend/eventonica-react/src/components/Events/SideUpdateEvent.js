@@ -131,7 +131,7 @@ class Form extends Component {
           hasLabel='true'
           htmlFor='numberInput'
           label='Id of Event to be Updated: '
-          required='true'
+          required={true}
           type='number'
           min='1'
           step='1'
@@ -141,7 +141,7 @@ class Form extends Component {
           hasLabel='true'
           htmlFor='textInput'
           label='New Event Name: '
-          required='true'
+          required={true}
           type='text'
         />
         

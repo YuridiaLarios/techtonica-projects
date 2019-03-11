@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import DeleteButton from './DeleteButton';
 import UpdateButton from './UpdateButton';
-import Error from './Error';
 
 class SingleEventDiv extends Component {
   constructor(props) {
@@ -51,8 +50,8 @@ class SingleEventDiv extends Component {
         return response.json();
       })
       .then((updatedEvent) => {
-        // updateEvent property passed by parent component, then we call the deleteEvent function 
-        this.props.updateEvent(updatedEvent)
+        this.props.deleteEvent(this.state.events)
+        this.props.addEvent(updatedEvent)
       })
       .catch((error) => {
         this.setState({
@@ -64,14 +63,14 @@ class SingleEventDiv extends Component {
 
   render(){
     return (
-      <div className="col s12 m6 l4">
+      <div className="col s12 m12 l4">
       <div className="card cardStyle">
         <div className="card-content">
           <p><span className="bold-pink">Id#</span> {this.props.item.id}</p>
           <p><span className="bold-pink">Name:</span> {this.props.item.name}</p> 
         </div>
-        <DeleteButton key={this.props.item.id} item={this.props.item}  handleSubmit={this.handleDeleteSearch} />
-        <UpdateButton key={this.props.item.id} item={this.props.item}  handleSubmit={this.handleUpdateSearch} />
+        <DeleteButton item={this.props.item}  handleSubmit={this.handleDeleteSearch} />
+        <UpdateButton item={this.props.item}  handleSubmit={this.handleUpdateSearch} />
       </div>
     </div>
     );
