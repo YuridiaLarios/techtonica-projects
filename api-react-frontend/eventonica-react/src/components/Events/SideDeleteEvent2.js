@@ -4,6 +4,7 @@ import Error from './Error';
 
 class SideDeleteEvents extends Component {
 
+  // this handle search is for textfield input to delete by id
   handleSearch = (eventId) =>{
     const url = "http://localhost:3000/events/" + eventId;
 
