@@ -17,6 +17,7 @@ class AllEvents extends Component {
     if (!this.state.error) {
       // All events come from its parent
       return this.props.events.map((item) => (
+        
         <SingleEventDiv deleteEvent={this.props.deleteEvent} key={item.id} item={item} />
       ));
     } else {

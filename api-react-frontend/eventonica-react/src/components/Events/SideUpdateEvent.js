@@ -58,8 +58,10 @@ class SideUpdateEvents extends Component {
   render() {
     return (
       <div className="row">
-        {this.renderItems()}
-        <Form/>
+        <div className="updateWholeComponentDiv">
+          {this.renderItems()}
+          <Form/>
+        </div>
       </div>
     );
   }

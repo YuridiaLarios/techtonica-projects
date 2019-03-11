@@ -29,6 +29,7 @@ p {
   font-size: 15px;
 }
 
+
 /***************************
 navbar
 ****************************/
@@ -93,10 +94,25 @@ input[type=number]:not(.browser-default) {
   text-align: center;
 }
 
-.addIcon {
+.addIcon,
+.idIcon,
+.updateIcon,
+.deleteIcon {
   position: absolute;
-  top: 30px;
-  right: 1%;
+  top: -35px;
+  left: -20px;
+}
+
+i.addIcon,
+i.idIcon,
+i.updateIcon,
+i.deleteIcon {
+  color: #48a69a;
+}
+
+.updateIconDiv {
+  position: relative;
+  top: 60px;
 }
 
 /***************************

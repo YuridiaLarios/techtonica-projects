@@ -54,10 +54,7 @@ class Sidenews extends Component {
 
 
 class SearchBar extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-    
+
   handleSubmit = (event) => {
     event.preventDefault();
     const text = event.target.eventID.value;
