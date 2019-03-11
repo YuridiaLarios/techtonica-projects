@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class DeleteButton extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
-    const eventID = 128;
+    const eventID = 131;
     this.props.handleSubmit(eventID);
   };
 

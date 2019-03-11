@@ -3,7 +3,7 @@ import DeleteButton from './DeleteButton';
 import Error from './Error';
 
 class SideDeleteEvents extends Component {
-  
+
   handleSearch = (eventId) =>{
     const url = "http://localhost:3000/events/" + eventId;
 
