@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SingleSide from './SingleSide';
+import SingleSide from './SingleSideEventById';
 import Error from './Error';
 
 class Sidenews extends Component {
@@ -66,7 +66,7 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div className="textFieldSearchDiv">
+      <div className="numberFieldSearchDiv">
         <form onSubmit={this.handleSubmit}>
           <input
             name="eventID"
@@ -75,7 +75,7 @@ class SearchBar extends React.Component {
             type='number'
             min='1'
             step='1'
-            placeholder="Type ID and press ENTER"
+            placeholder="Type ID press ENTER"
           />
         </form>
       </div>

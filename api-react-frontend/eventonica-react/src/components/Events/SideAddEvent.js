@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SingleSideAddEvent from './SingleSideAddEvent';
 import Error from './Error';
 
 class SideAddEvents extends Component {
@@ -41,23 +40,20 @@ class SideAddEvents extends Component {
     };
   }
 
-  renderItems() {
-    if (!this.state.error) {
-      return (
-         <SingleSideAddEvent key={this.state.events.id} item={this.state.events} />
-      );
-    } else {
-      return <Error />
-    }
-  }
 
   render() {
     return (
       <div className="row">
-        {this.renderItems()}
-          <div className="app-container">
-            <SearchBar handleSubmit={this.handleSearch} />
+        <div>
+          <div className="divider"></div>
+          <h1>Post New Event</h1>
+          <div className="card cardStyleSideMenu">
+            <div className="text-input">
+              <SearchBar handleSubmit={this.handleSearch} />
+            </div>
+            <span><i class="medium material-icons addIcon">add_circle</i></span>
           </div>
+        </div>
       </div>
     );
   }

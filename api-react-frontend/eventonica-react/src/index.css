@@ -25,6 +25,7 @@ h5 {
 
 
 p {
+
   font-size: 15px;
 }
 
@@ -47,11 +48,12 @@ individual-event div container
 .deleteButtonDiv {
   position: absolute;
   bottom: 10%;
-  right: 5%; 
-  opacity: 0.5; 
+  right: 5%;
+  opacity: 0.5;
 }
 
 .deleteButtonDiv:hover {
+  transform: scale(1.1);
   opacity: 0.8;
 }
 
@@ -65,18 +67,36 @@ side div container
   color: #48a69a;
 }
 
+.cardStyleSideMenu {
+  min-height: 110px;
+}
+
 .textFieldSearchDiv {
   margin: 0 auto;
-  width: 48%;
+  width: 60%;
+}
+
+.numberFieldSearchDiv {
+  margin: 0 auto;
+  font-size: 12px;
+  width: 40%;
 }
 
 .textFieldSearch {
   font-size: 33px;
 }
 
-input:not([type]), input[type=text]:not(.browser-default),input[type=number]:not(.browser-default) {
+input:not([type]),
+input[type=text]:not(.browser-default),
+input[type=number]:not(.browser-default) {
   font-size: 17px;
   text-align: center;
+}
+
+.addIcon {
+  position: absolute;
+  top: 30px;
+  right: 1%;
 }
 
 /***************************
@@ -142,7 +162,7 @@ textarea {
   border-bottom: 1px solid #bdc3c7;
   border-left: 0;
   transition: border-bottom-color .15s ease-in;
-  
+
 }
 
 input[type=checkbox],
