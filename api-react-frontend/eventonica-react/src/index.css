@@ -105,14 +105,17 @@ input[type=number]:not(.browser-default) {
 
 i.addIcon,
 i.idIcon,
-i.updateIcon,
-i.deleteIcon {
+i.updateIcon {
   color: #48a69a;
 }
 
 .updateIconDiv {
   position: relative;
   top: 60px;
+}
+
+i.deleteIcon {
+  color: red;
 }
 
 /***************************
