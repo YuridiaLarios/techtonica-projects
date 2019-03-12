@@ -11,6 +11,11 @@ class SingleEventDiv extends Component {
     };
   }
 
+
+
+
+
+
   // to handle deleting an event from database
   handleDeleteSearch = (eventId) =>{
     const url = "http://localhost:3000/events/" + eventId;
@@ -33,6 +38,10 @@ class SingleEventDiv extends Component {
   };
 
 
+
+
+  
+  // to handle updating an event from database
   handleUpdateSearch = (eventId) =>{
     const url = "http://localhost:3000/events/" + eventId;
     const body = {
@@ -50,6 +59,7 @@ class SingleEventDiv extends Component {
         return response.json();
       })
       .then((updatedEvent) => {
+        // deleteEvent and addEvent property passed by parent component, then we call both of those function 
         this.props.deleteEvent(this.state.events)
         this.props.addEvent(updatedEvent)
       })
@@ -70,7 +80,7 @@ class SingleEventDiv extends Component {
           <p><span className="bold-pink">Name:</span> {this.props.item.name}</p> 
         </div>
         <DeleteButton item={this.props.item}  handleSubmit={this.handleDeleteSearch} />
-        <UpdateButton item={this.props.item}  handleSubmit={this.handleUpdateSearch} />
+        <UpdateButton item={this.props.item}  handleSubmit={this.handleUpdateSearch} addValuesToBeUpdated={this.props.addValuesToBeUpdated}/>
       </div>
     </div>
     );

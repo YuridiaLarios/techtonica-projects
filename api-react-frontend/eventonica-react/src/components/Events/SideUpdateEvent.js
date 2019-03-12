@@ -8,15 +8,26 @@ class SideUpdateEvents extends Component {
     super(props);
     this.state = {
       nameInputField: '',
-      idInputField: null,
+      idInputField: '',
       events: {},
       error: false,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
+
+  // COLLECTING CORRESPONDING EVENTID AND EVENTNAME AFTER CLICKING INDIVIDUAL UPDATES BUTTON
+  // binds this method to SideUpdateEvent instance
+  // passCurrentValues = (currentValues) => {
+  //     this.setState(
+  //       {
+  //        nameInputField: currentValues.name,
+  //        idInputField: currentValues.id,
+  //       }
+  //     )
+  // }
+
 
 
   handleInputChange(event) {
@@ -25,13 +36,21 @@ class SideUpdateEvents extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-
-
-
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.eventToBeUpdated !== prevProps.eventToBeUpdated) {
+      // console.log("inside SideUpdateEvent.js");
+      // console.log("the name from state is: " + this.props.eventToBeUpdated.name + "the id from state is: " + this.props.eventToBeUpdated.id) 
+      this.setState({ 
+        nameInputField: this.props.eventToBeUpdated.name,
+        idInputField: this.props.eventToBeUpdated.id
+      });
+    }
+  }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('A new name was submitted: ' + this.state.nameInputField + 'for id=' + this.state.idInputField);
+    // console.log('A new name was submitted: ' + this.state.nameInputField + 'for id=' + this.state.idInputField);
     
     // function to put/update the name of the event using fetch
     // updateData(id, newName) {
@@ -51,6 +70,9 @@ class SideUpdateEvents extends Component {
       .then((event) => {
         this.props.deleteEvent(event)
         this.props.addEvent(event)
+        this.setState({
+          nameInputField: '',
+          idInputField: '', });
       })
       .catch((error) => {
         this.setState({
@@ -60,12 +82,6 @@ class SideUpdateEvents extends Component {
     
   }
   
-
-
-  
-
-
-
 
 
   render() {
@@ -79,11 +95,11 @@ class SideUpdateEvents extends Component {
         <form onSubmit={this.handleSubmit}>
         <label>
           Id:
-          <input type="number" name="idInputField" required={true} onChange={this.handleInputChange} />
+          <input value={this.state.idInputField} type="number" name="idInputField" required={true} onChange={this.handleInputChange} />
         </label>
         <label>
           Name:
-          <input type="text" name="nameInputField" required={true} onChange={this.handleInputChange} />
+          <input value={this.state.nameInputField} type="text" name="nameInputField" required={true} onChange={this.handleInputChange} />
         </label>
         <button type="submit" value="Submit">Update</button>
       </form>

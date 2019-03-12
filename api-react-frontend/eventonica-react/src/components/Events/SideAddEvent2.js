@@ -35,6 +35,8 @@ class SideAddEvent2 extends Component {
       .then((event) => {
         // addEvent property passed by parent component, then we call the addEvent function 
         this.props.addEvent(event)
+        this.setState({
+          value: '' });
       })
       .catch((error) => {
         this.setState({

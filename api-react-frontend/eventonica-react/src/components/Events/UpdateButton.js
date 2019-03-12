@@ -2,10 +2,23 @@ import React, { Component } from 'react';
 
 
 class UpdateButton extends Component {
+
+  constructor(props) {
+    super(props); // props ia an object that has item.id and item.name in it now
+    this.state = {
+      events: {},
+      error: false
+    };
+  }
+
+
   handleSubmit = (event) => {
     event.preventDefault();
-    const eventID = this.props.item.id;
-    this.props.handleSubmit(eventID);
+    let valuesToBeUpdated = {
+      name: this.props.item.name,
+      id: this.props.item.id
+    }
+    this.props.addValuesToBeUpdated(valuesToBeUpdated);
   };
 
   render() {
