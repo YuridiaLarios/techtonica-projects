@@ -13,7 +13,7 @@ class UpdateButton extends Component {
       <div>
         <div className="updateButtonDiv">
           <button className="updateButton btn-floating btn-small waves-effect waves-light" onClick={this.handleSubmit}>
-          <i className="material-icons">update</i>
+          <i className="material-icons">edit</i>
           </button>
         </div>
       </div>
