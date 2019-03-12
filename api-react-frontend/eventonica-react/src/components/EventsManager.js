@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import AllEvents from './Events/AllEvents';
 import SideEventById from './Events/SideEventById';
-import SideAddEvent from './Events/SideAddEvent';
+// import SideAddEvent from './Events/SideAddEvent';
 import SideAddEvent2 from './Events/SideAddEvent2';
 import SideUpdateEvents from './Events/SideUpdateEvent';
 import SideDeleteEvent from './Events/SideDeleteEvent';
@@ -88,7 +88,7 @@ class EventsManager extends Component {
           <div className="col m7 l4">
             <SideEventById />
             {/* parent to child we give them props, in order to give things back, we give the child a function that they can call with whatever data they want to give back to the parent  */}
-            <SideAddEvent addEvent={this.addEvent} />
+            {/* <SideAddEvent addEvent={this.addEvent} /> */}
             <SideAddEvent2 addEvent={this.addEvent} />
             <SideUpdateEvents deleteEvent={this.deleteEvent} addEvent={this.addEvent}/>
             <SideDeleteEvent deleteEvent={this.deleteEvent}/>

@@ -48,7 +48,7 @@ class SideAddEvent2 extends Component {
       <div className="row">
         <div>
         <div className="divider"></div>
-        <h1>Post New Event method 2</h1>
+        <h1>Post New Event</h1>
           <div className="card cardStyleSideMenu">
             <form onSubmit={this.handleSubmit}> 
                 <input type="text" placeholder="Type Name press ENTER" required={true} value={this.state.value} onChange={this.handleChange} />
